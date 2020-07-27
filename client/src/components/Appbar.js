@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import imgMask from "../image/CoronaIcon.png";
+import Typing from "react-typing-animation";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,9 +36,15 @@ export default function Appbar() {
           >
             <img style={{ width: 80, height: 70 }} src={imgMask} />
           </IconButton>
-          <Typography variant="h4" className={classes.title} fontFamily="Arial">
-            CoronaGoodsKR
-          </Typography>
+          <Typing speed={150}>
+            <Typography
+              variant="h4"
+              className={classes.title}
+              fontFamily="Ubuntu"
+            >
+              CoronaGoodsKR
+            </Typography>
+          </Typing>
         </Toolbar>
       </AppBar>
     </div>

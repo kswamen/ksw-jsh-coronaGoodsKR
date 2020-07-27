@@ -2,6 +2,7 @@ import React from "react";
 import Appbar from "./components/Appbar";
 import Scroller from "./components/Scroller";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   firstDiv: {
@@ -26,12 +27,12 @@ function App() {
 
   return (
     <div>
-      <div className={classes.firstDiv}>
+      <div id="section1" className={classes.firstDiv}>
         <Appbar />
         <Scroller />
       </div>
-      <div className={classes.secondDiv}></div>
-      <div className={classes.thirdDiv}></div>
+      <div id="section2" className={classes.secondDiv}></div>
+      <div id="section3" className={classes.thirdDiv}></div>
     </div>
   );
 }

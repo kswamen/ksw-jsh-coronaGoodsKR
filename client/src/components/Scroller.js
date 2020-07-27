@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,9 +23,39 @@ export default function Scroller() {
         color="primary"
         aria-label="vertical outlined primary button group"
       >
-        <Button>News</Button>
-        <Button>Mask</Button>
-        <Button>Products</Button>
+        <Button>
+          <Link
+            activeClass="active"
+            to="section1"
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            News
+          </Link>
+        </Button>
+        <Button>
+          <Link
+            activeClass="active"
+            to="section2"
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            Mask
+          </Link>
+        </Button>
+        <Button>
+          <Link
+            activeClass="active"
+            to="section3"
+            spy={true}
+            smooth={true}
+            duration={500}
+          >
+            Products
+          </Link>
+        </Button>
       </ButtonGroup>
     </div>
   );
