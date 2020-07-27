@@ -25,7 +25,7 @@ export default function Appbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ background: "#ff0000", opacity: 0.8 }}>
+      <AppBar position="static" style={{ background: "#ff69b4", opacity: 1.0 }}>
         <Toolbar>
           <IconButton
             edge="start"
