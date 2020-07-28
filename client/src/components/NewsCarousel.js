@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import "./carousel.css";
+import "../css/carousel.css";
 import img1 from "../image/1.jpeg";
 import img2 from "../image/2.jpeg";
 import img3 from "../image/3.jpeg";
@@ -26,7 +26,7 @@ class NewsCarousel extends React.Component {
     return (
       <Slider
         style={{
-          marginTop: "10vh",
+          top: "15vh",
           marginLeft: "10vw",
           width: "80vw",
           height: "65vh",

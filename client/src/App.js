@@ -30,10 +30,11 @@ class App extends Component {
         <div id="section1" className={classes.firstDiv}>
           <Appbar />
           <Scroller />
-          <NewsCarousel />
         </div>
         <div id="section2" className={classes.secondDiv}></div>
-        <div id="section3" className={classes.thirdDiv}></div>
+        <div id="section3" className={classes.thirdDiv}>
+          <NewsCarousel />
+        </div>
       </div>
     );
   }
