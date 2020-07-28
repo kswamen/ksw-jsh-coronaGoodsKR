@@ -40,7 +40,7 @@ export default function Appbar() {
             <Typography
               variant="h4"
               className={classes.title}
-              fontFamily="Ubuntu"
+              color="textPrimary"
             >
               CoronaGoodsKR
             </Typography>

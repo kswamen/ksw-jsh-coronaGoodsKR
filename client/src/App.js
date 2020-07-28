@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Appbar from "./components/Appbar";
 import Scroller from "./components/Scroller";
-import { Link, animateScroll as scroll } from "react-scroll";
 import { withStyles } from "@material-ui/core/styles";
+import NewsCarousel from "./components/NewsCarousel";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -30,6 +30,7 @@ class App extends Component {
         <div id="section1" className={classes.firstDiv}>
           <Appbar />
           <Scroller />
+          <NewsCarousel />
         </div>
         <div id="section2" className={classes.secondDiv}></div>
         <div id="section3" className={classes.thirdDiv}></div>
@@ -38,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(App); //withStyles 덕분에 firstDiv가 구별된다.

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     position: "fixed",
-    left: "90%",
+    left: "93%",
     top: "40%",
   },
 }));
