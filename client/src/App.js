@@ -3,7 +3,7 @@ import Appbar from "./components/Appbar";
 import Scroller from "./components/Scroller";
 import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
-
+import Posts from "./components/Posts";
 const styles = (theme) => ({
   firstDiv: {
     backgroundColor: "#81c147",
@@ -30,6 +30,7 @@ class App extends Component {
         <div id="section1" className={classes.firstDiv}>
           <Appbar />
           <Scroller />
+          <Posts />
         </div>
         <div id="section2" className={classes.secondDiv}></div>
         <div id="section3" className={classes.thirdDiv}>
