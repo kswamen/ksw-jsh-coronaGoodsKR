@@ -13,27 +13,89 @@ class NewsCarousel extends React.Component {
     var settings = {
       dots: true,
       infinite: true,
-      speed: 500,
-      slidesToShow: 3,
+      speed: 1000,
+      slidesToShow: 2,
       slidesToScroll: 1,
       arrows: true,
-      centerMode: true,
+      centerMode: false,
       centerPadding: 0,
       autoplay: true,
+      rows: 2,
+      slidesPerRow: 1,
+      //initialSlide: 1,
       //centerPadding: "px",
       //slidesPerRow: 3,
     };
     return (
       <Slider
         style={{
-          top: "15vh",
-          marginLeft: "10vw",
-          width: "80vw",
+          top: "13vh",
+          marginLeft: "15vw",
+          paddingTop: "10px",
+          width: "70vw",
           height: "65vh",
         }}
         className="carousel-slider"
         {...settings}
       >
+        <div>
+          <img
+            src={
+              "//img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_P2.jpg"
+            }
+          />
+        </div>
+        <div>
+          <img src={img2} />
+        </div>
+        <div>
+          <img src={img3} />
+        </div>
+        <div>
+          <img src={img4} />{" "}
+        </div>
+        <div>
+          <img src={img5} />{" "}
+        </div>
+        <div>
+          <img src={img6} />{" "}
+        </div>
+        <div>
+          <img src={img1} />
+        </div>
+        <div>
+          <img src={img2} />
+        </div>
+        <div>
+          <img src={img3} />
+        </div>
+        <div>
+          <img src={img4} />{" "}
+        </div>
+        <div>
+          <img src={img5} />{" "}
+        </div>
+        <div>
+          <img src={img6} />{" "}
+        </div>
+        <div>
+          <img src={img1} />
+        </div>
+        <div>
+          <img src={img2} />
+        </div>
+        <div>
+          <img src={img3} />
+        </div>
+        <div>
+          <img src={img4} />{" "}
+        </div>
+        <div>
+          <img src={img5} />{" "}
+        </div>
+        <div>
+          <img src={img6} />{" "}
+        </div>
         <div>
           <img src={img1} />
         </div>
