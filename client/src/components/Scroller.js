@@ -21,7 +21,8 @@ export default function Scroller() {
       <ButtonGroup
         orientation="vertical"
         color="primary"
-        aria-label="vertical outlined primary button group"
+        aria-label="vertical contained primary button group"
+        variant="contained"
       >
         <Button>
           <Link
@@ -31,7 +32,7 @@ export default function Scroller() {
             smooth={true}
             duration={500}
           >
-            News
+            Total Patients
           </Link>
         </Button>
         <Button>
@@ -53,7 +54,7 @@ export default function Scroller() {
             smooth={true}
             duration={500}
           >
-            Products
+            News
           </Link>
         </Button>
       </ButtonGroup>

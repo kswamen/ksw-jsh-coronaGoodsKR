@@ -7,6 +7,29 @@
   height: 224px;
   opacity: 80%;
   position: relative;
+  border: 5px solid;
+}
+
+.div-slider {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.div-slider text {
+  margin-left: 35px;
+  margin-right: 35px;
+  position: relative;
+  background-color: gray;
   border-radius: 5%;
-  border-width: 1;
+  padding: 5px;
+  opacity: 70%;
+  word-wrap: break-word;
+  width: 20vw;
 }

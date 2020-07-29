@@ -15,11 +15,11 @@ class NewsCarousel extends React.Component {
       infinite: true,
       speed: 1000,
       slidesToShow: 2,
-      slidesToScroll: 1,
+      slidesToScroll: 2,
       arrows: true,
       centerMode: false,
       centerPadding: 0,
-      autoplay: true,
+      autoplay: false,
       rows: 2,
       slidesPerRow: 1,
       //initialSlide: 1,
@@ -29,89 +29,117 @@ class NewsCarousel extends React.Component {
     return (
       <Slider
         style={{
-          top: "13vh",
+          top: "10vh",
           marginLeft: "15vw",
-          paddingTop: "10px",
           width: "70vw",
-          height: "65vh",
+          height: "85vh",
         }}
         className="carousel-slider"
         {...settings}
       >
-        <div>
+        <div className="div-slider">
           <img
             src={
               "//img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_P2.jpg"
             }
           />
+          <div>
+            <h2>
+              <text>title</text>
+            </h2>
+          </div>
+          <text>
+            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
+          </text>
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img2} />
+          <h2>
+            <text>title</text>
+          </h2>
+          <text>
+            {" "}
+            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
+          </text>
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img3} />
+          <h2>
+            <text>title</text>
+          </h2>
+          <text>
+            {" "}
+            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
+          </text>
         </div>
-        <div>
-          <img src={img4} />{" "}
+        <div className="div-slider">
+          <img src={img4} />
+          <h2>
+            <text>title</text>
+          </h2>
+          <text>
+            {" "}
+            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
+          </text>
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img5} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img6} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img1} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img2} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img3} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img4} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img5} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img6} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img1} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img2} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img3} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img4} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img5} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img6} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img1} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img2} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img3} />
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img4} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img5} />{" "}
         </div>
-        <div>
+        <div className="div-slider">
           <img src={img6} />{" "}
         </div>
       </Slider>
