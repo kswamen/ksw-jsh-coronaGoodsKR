@@ -13,6 +13,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    position: "fixed",
+    left: "93%",
+    top: "40%",
+  },
+}));
+
 export default function Scroller() {
   const classes = useStyles();
 
