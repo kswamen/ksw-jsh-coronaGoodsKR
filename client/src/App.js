@@ -4,9 +4,14 @@ import Scroller from "./components/Scroller";
 import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
+import bg1 from "./image/bg1.jpg";
+
 const styles = (theme) => ({
   firstDiv: {
-    backgroundColor: "#81c147",
+    backgroundImage: "url(" + bg1 + ")",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     width: "100vw",
     height: "100vh",
   },
@@ -16,7 +21,10 @@ const styles = (theme) => ({
     height: "100vh",
   },
   thirdDiv: {
-    backgroundColor: "#228f76",
+    backgroundImage: "url(" + bg1 + ")",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     width: "100vw",
     height: "100vh",
   },
