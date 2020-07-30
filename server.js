@@ -41,7 +41,7 @@ cron.schedule("*/1 * * * *", async () => {
 // })
 
 app.get("/api/news", async (req, res) => {
-  res.send(newsData);
+  res.send(newsJSON);
 });
 
 app.get("/api/crawl", async (req, res) => {
