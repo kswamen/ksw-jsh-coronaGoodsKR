@@ -1,9 +1,18 @@
 const express = require("express");
+
 const { getNews, getDay, getDay2, getDay3,getDay4 } = require("./crawl.js");
+
+
+const { getNewestNews } = require("./crawlNewestNews.js");
+const fs = require("fs");
+
 const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const cron = require("node-cron");
+
+const newsJSON = fs.readFileSync("./newestNewsData.json");
+const newsData = JSON.parse(newsJSON);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,9 +26,14 @@ async function handleAsync() {
   return [sum, day, day2, day3,day4];
 }
 
+async function getNewsAsync() {
+  const data = await getNewestNews();
+  console.log("NewestNews", data);
+}
+
 cron.schedule("*/1 * * * *", async () => {
   console.log("running a task every two minutes");
-  await handleAsync();
+  await getNewsAsync();
 });
 
 // app.use('/api/crawl',async(req,res) => {
@@ -29,6 +43,10 @@ cron.schedule("*/1 * * * *", async () => {
 //             {id : 1}]
 //     );
 // })
+
+app.get("/api/news", async (req, res) => {
+  res.send(newsJSON);
+});
 
 app.get("/api/crawl", async (req, res) => {
   const text = await handleAsync();

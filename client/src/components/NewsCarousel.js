@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { post } from "axios";
 import "../css/carousel.css";
 import img1 from "../image/1.jpeg";
 import img2 from "../image/2.jpeg";
@@ -9,6 +10,27 @@ import img5 from "../image/5.jpeg";
 import img6 from "../image/6.jpeg";
 
 class NewsCarousel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newsData: [],
+    };
+  }
+
+  componentWillMount() {
+    this.callApi().then((res) => {
+      this.setState({
+        newsData: res,
+      });
+    });
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/news");
+    const body = await response.json();
+    return body;
+  };
+
   render() {
     var settings = {
       dots: true,
@@ -26,6 +48,23 @@ class NewsCarousel extends React.Component {
       //centerPadding: "px",
       //slidesPerRow: 3,
     };
+
+    const newsComponent = (data) => {
+      return data.map((news, i) => {
+        return (
+          <div className="div-slider">
+            <img src={news.src} />
+            <div>
+              <h2>
+                <text>{news.title}</text>
+              </h2>
+            </div>
+            <text>{news.subtitle}</text>
+          </div>
+        );
+      });
+    };
+
     return (
       <Slider
         style={{
@@ -37,111 +76,7 @@ class NewsCarousel extends React.Component {
         className="carousel-slider"
         {...settings}
       >
-        <div className="div-slider">
-          <img
-            src={
-              "//img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_P2.jpg"
-            }
-          />
-          <div>
-            <h2>
-              <text>title</text>
-            </h2>
-          </div>
-          <text>
-            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
-          </text>
-        </div>
-        <div className="div-slider">
-          <img src={img2} />
-          <h2>
-            <text>title</text>
-          </h2>
-          <text>
-            {" "}
-            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
-          </text>
-        </div>
-        <div className="div-slider">
-          <img src={img3} />
-          <h2>
-            <text>title</text>
-          </h2>
-          <text>
-            {" "}
-            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
-          </text>
-        </div>
-        <div className="div-slider">
-          <img src={img4} />
-          <h2>
-            <text>title</text>
-          </h2>
-          <text>
-            {" "}
-            articlearticlearticlearticle/img5.yna/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_/img5.yna.co.kr/photo/yna/YH/2020/07/14/PYH2020071405170005400_
-          </text>
-        </div>
-        <div className="div-slider">
-          <img src={img5} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img6} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img1} />
-        </div>
-        <div className="div-slider">
-          <img src={img2} />
-        </div>
-        <div className="div-slider">
-          <img src={img3} />
-        </div>
-        <div className="div-slider">
-          <img src={img4} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img5} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img6} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img1} />
-        </div>
-        <div className="div-slider">
-          <img src={img2} />
-        </div>
-        <div className="div-slider">
-          <img src={img3} />
-        </div>
-        <div className="div-slider">
-          <img src={img4} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img5} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img6} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img1} />
-        </div>
-        <div className="div-slider">
-          <img src={img2} />
-        </div>
-        <div className="div-slider">
-          <img src={img3} />
-        </div>
-        <div className="div-slider">
-          <img src={img4} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img5} />{" "}
-        </div>
-        <div className="div-slider">
-          <img src={img6} />{" "}
-        </div>
+        {newsComponent(this.state.newsData)}
       </Slider>
     );
   }
