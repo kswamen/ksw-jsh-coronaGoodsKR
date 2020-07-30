@@ -24,21 +24,21 @@ class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      crwal: [],
+      crawl: [],
     };
   }
   componentWillMount() {
-    fetch("api/crwal")
+    fetch("api/crawl")
       .then((res) => res.json())
       .then((data) =>
         this.setState({
-          crwal: data,
+          crawl: data,
         })
       );
   }
   render() {
-    const { crwal } = this.state;
-    const crwallist = crwal.map((post) => (
+    const { crawl } = this.state;
+    const crawllist = crawl.map((post) => (
       <div>
         <TableContainer component={Paper}>
           <Table>
@@ -91,7 +91,7 @@ class Posts extends Component {
       </div>
     ));
 
-    const agelist = crwal.map((post) => (
+    const agelist = crawl.map((post) => (
       <div>
         <TableContainer component={Paper}>
           <Table>
@@ -137,7 +137,7 @@ class Posts extends Component {
     return (
       <div>
         <h2>※ 국내 발생 현황</h2>
-        {crwallist}
+        {crawllist}
         <p></p>
         <h2>※ 확진자 성별 현황</h2>
         {agelist}

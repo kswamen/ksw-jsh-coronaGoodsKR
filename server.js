@@ -22,7 +22,7 @@ cron.schedule("*/1 * * * *", async () => {
   await handleAsync();
 });
 
-// app.use('/api/crwal',async(req,res) => {
+// app.use('/api/crawl',async(req,res) => {
 //   const text = await handleAsync();
 //   console.log(text);
 //   res.json([{text: text},
@@ -30,7 +30,7 @@ cron.schedule("*/1 * * * *", async () => {
 //     );
 // })
 
-app.get("/api/crwal", async (req, res) => {
+app.get("/api/crawl", async (req, res) => {
   const text = await handleAsync();
   var accumulate = text[0];
   var s_total = text[1][0];
