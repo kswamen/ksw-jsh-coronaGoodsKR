@@ -6,7 +6,7 @@ let html = "";
 
 async function getHtml() {
   try {
-    return await axios.get("http://comic.naver.com/webtoon/weekday.nhn");
+    return await axios.get("https://www.yna.co.kr/coronavirus/news");
   } catch (error) {
     console.error(error);
   }
@@ -21,30 +21,28 @@ async function getNewestNews() {
   const dataPath = "./newestNewsData.json";
   const $ = cheerio.load(html.data);
 
-  const lastLen = $(".col").eq(6).find("img").length;
-  $(".col").each(async function (day, item) {
-    var index = 0;
-    $(item)
-      .find("img")
-      .each(function (num, item) {
-        var src = $(item).attr("src");
-        if (src.substr(src.length - 3, 3) == "jpg") {
-          console.log(day + ", " + index);
-          var data = {
-            day: day,
-            num: getNumberInformat(index),
-            title: "No Title yet",
-            src: src,
-          };
-          index++;
-          dataArr.push(data);
-        }
-        if (day == 6 && num == lastLen - 1) {
-          fs.writeFileSync(dataPath, JSON.stringify(dataArr));
-          console.log("wrote json file!");
-        }
-      });
-  });
+  $(".container .contents .content01 .headline-zone li article").each(
+    async function (index, item) {
+      var src = "http:" + $(item).find("img").attr("src");
+      var title = $(item).find("img").attr("alt");
+      var subtitle = $(item).find(".lead").text();
+      var a = $(item).find(".tit-news").find("a").attr("href");
+
+      var data = {
+        title: title,
+        subtitle: subtitle,
+        src: src,
+        a: a.replace("//", "https://"),
+      };
+
+      dataArr.push(data);
+
+      if (index > 20) {
+        fs.writeFileSync(dataPath, JSON.stringify(dataArr));
+        console.log("data written on json file");
+      }
+    }
+  );
 }
 
 function getNumberInformat(num) {

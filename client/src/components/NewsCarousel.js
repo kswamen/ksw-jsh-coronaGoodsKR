@@ -2,12 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import { post } from "axios";
 import "../css/carousel.css";
-import img1 from "../image/1.jpeg";
-import img2 from "../image/2.jpeg";
-import img3 from "../image/3.jpeg";
-import img4 from "../image/4.jpeg";
-import img5 from "../image/5.jpeg";
-import img6 from "../image/6.jpeg";
 
 class NewsCarousel extends React.Component {
   constructor(props) {
@@ -53,13 +47,15 @@ class NewsCarousel extends React.Component {
       return data.map((news, i) => {
         return (
           <div className="div-slider">
-            <img src={news.src} />
-            <div>
-              <h2>
-                <text>{news.title}</text>
-              </h2>
-            </div>
-            <text>{news.subtitle}</text>
+            <a href={news.a} target={"_blank"}>
+              <img src={news.src} />
+              <div>
+                <h3>
+                  <text>{news.title}</text>
+                </h3>
+              </div>
+              <text style={{ borderRadius: 0 }}>{news.subtitle}</text>
+            </a>
           </div>
         );
       });
