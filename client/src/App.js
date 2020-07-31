@@ -12,12 +12,12 @@ const styles = (theme) => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    width: "100vw",
+    width: "auto",
     height: "100vh",
   },
   secondDiv: {
     backgroundColor: "#1176a7",
-    width: "100vw",
+    width: "auto",
     height: "100vh",
   },
   thirdDiv: {
@@ -25,7 +25,7 @@ const styles = (theme) => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    width: "100vw",
+    width: "auto",
     height: "100vh",
   },
 });
