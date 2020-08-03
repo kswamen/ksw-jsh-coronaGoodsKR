@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import imgMask from "../image/CoronaIcon.png";
 import Typing from "react-typing-animation";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
 }));
 
 export default function Appbar() {
@@ -26,7 +24,10 @@ export default function Appbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ background: "#ff69b4", opacity: 1.0 }}>
+      <AppBar
+        position="fixed"
+        style={{ backgroundColor: "rgba( 52, 52, 52, 0.8)" }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
@@ -36,15 +37,83 @@ export default function Appbar() {
           >
             <img style={{ width: 80, height: 70 }} src={imgMask} />
           </IconButton>
-          <Typing speed={150}>
-            <Typography
-              variant="h4"
-              className={classes.title}
-              color="textPrimary"
-            >
+          <Typing speed={10}>
+            <Typography variant="h4" color="#ffffff">
               CoronaGoodsKR
             </Typography>
           </Typing>
+
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "auto",
+              position: "relative",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Button color="default">
+              <Link
+                activeClass="active"
+                to="section1"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                <Typography
+                  style={{ color: "#ffffff", padding: "15px" }}
+                  variant="h5"
+                >
+                  Total Patients
+                </Typography>
+              </Link>
+            </Button>
+            <Button color="default">
+              <Link
+                activeClass="active"
+                to="section2"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                <Typography
+                  style={{ color: "#ffffff", padding: "15px" }}
+                  variant="h5"
+                >
+                  Products
+                </Typography>
+              </Link>
+            </Button>
+            <Button color="default">
+              <Link
+                activeClass="active"
+                to="section3"
+                spy={true}
+                smooth={true}
+                duration={500}
+              >
+                <Typography
+                  style={{
+                    color: "#ffffff",
+                    padding: "15px",
+                    marginRight: "15px",
+                  }}
+                  variant="h5"
+                >
+                  News
+                </Typography>
+              </Link>
+            </Button>
+            <Button
+              variant="outlined"
+              color="default"
+              style={{ borderColor: "#ffffff", height: "30%" }}
+            >
+              <Typography style={{ color: "#ffffff" }} variant="h5">
+                Login
+              </Typography>
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

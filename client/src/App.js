@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Appbar from "./components/Appbar";
-import Scroller from "./components/Scroller";
 import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
 import bg1 from "./image/bg1.jpg";
 import Product from "./components/Product"
+
+import Login from "./pages/login";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -38,7 +39,6 @@ class App extends Component {
       <div>
         <div id="section1" className={classes.firstDiv}>
           <Appbar />
-          <Scroller />
           <Posts />
         </div>
         <div id="section2" className={classes.secondDiv}>

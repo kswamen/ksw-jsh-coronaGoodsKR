@@ -19,36 +19,33 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const StyledTableContainer = withStyles((theme)=> ({
+const StyledTableContainer = withStyles((theme) => ({
   root: {
-    opacity:'80%',
-    width:'auto%',
-    marginLeft:'8%',
-    marginRight:'20%'
-  }
-}))(TableContainer)
+    opacity: "80%",
+    width: "auto%",
+    marginLeft: "8%",
+    marginRight: "20%",
+  },
+}))(TableContainer);
 
-const StyledTableContainer2 = withStyles((theme)=> ({
+const StyledTableContainer2 = withStyles((theme) => ({
   root: {
-    opacity:'80%',
-    width:'auto',
-    marginLeft:'5%',
-    marginRight:'5%',
-    height:'250px'
-    
-  }
-}))(TableContainer)
+    opacity: "80%",
+    width: "auto",
+    marginLeft: "5%",
+    marginRight: "5%",
+    height: "250px",
+  },
+}))(TableContainer);
 
-const StyledTableContainer3 = withStyles((theme)=> ({
+const StyledTableContainer3 = withStyles((theme) => ({
   root: {
-    opacity:'80%',
-    width:'auto',
-    marginLeft:'20%',
-    marginRight:'12%',
-  }
-}))(TableContainer)
-
-
+    opacity: "80%",
+    width: "auto",
+    marginLeft: "20%",
+    marginRight: "12%",
+  },
+}))(TableContainer);
 
 class Posts extends Component {
   /* 컴포넌트 생성시 */
@@ -119,9 +116,6 @@ class Posts extends Component {
               </TableRow>
             </TableBody>
           </Table>
-
-          
-
         </StyledTableContainer>
       </div>
     ));
@@ -184,60 +178,112 @@ class Posts extends Component {
             <TableBody>
               <TableRow>
                 <StyledTableCell align="center">80 이상</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_80_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_80_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_80_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_80_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_80_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_80_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">70 - 79</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_70_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_70_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_70_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_70_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_70_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_70_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">60 - 69</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_60_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_60_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_60_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_60_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_60_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_60_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">50 - 59</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_50_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_50_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_50_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_50_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_50_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_50_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">40 - 49</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_40_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_40_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_40_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_40_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_40_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_40_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">30 - 39</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_30_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_30_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_30_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_30_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_30_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_30_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">20 - 29</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_20_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_20_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_20_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_20_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_20_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_20_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">10 - 19</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_10_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_10_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_10_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_10_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_10_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_10_critical}
+                </StyledTableCell>
               </TableRow>
               <TableRow>
                 <StyledTableCell align="center">0 - 9</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_0_sick}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_0_death}</StyledTableCell>
-                <StyledTableCell align="center">{post.get4_0_critical}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_0_sick}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_0_death}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {post.get4_0_critical}
+                </StyledTableCell>
               </TableRow>
-             
-             
             </TableBody>
           </Table>
         </StyledTableContainer2>
@@ -246,25 +292,34 @@ class Posts extends Component {
 
     return (
       <div>
-        
-          <table style={{textAlignLast:"center",width:"-webkit-fill-available"}}>
-            <tr>
-              <td><h2 style={{color:"white",textAlignLast:"center"}}>※ 국내 발생 현황</h2></td>
-              <td><h2 style={{color:"white",textAlignLast:"center"}}>※ 확진자 성별 현황</h2></td>
-            </tr>
-            <tr>
-              <td>{crawllist}</td>
-              <td>{agelist}</td>
-            </tr>
-          </table>
-          
-        
-          <br></br>
-           <br></br>
-          <h2 style={{color:"white",textAlignLast:"center"}}>※ 확진자 연령별 현황</h2>
-          {agelist2}
+        <table
+          style={{ textAlignLast: "center", width: "-webkit-fill-available" }}
+        >
+          <tr>
+            <td>
+              <h2 style={{ color: "white", textAlignLast: "center" }}>
+                ※ 국내 발생 현황
+              </h2>
+            </td>
+            <td>
+              <h2 style={{ color: "white", textAlignLast: "center" }}>
+                ※ 확진자 성별 현황
+              </h2>
+            </td>
+          </tr>
+          <tr>
+            <td>{crawllist}</td>
+            <td>{agelist}</td>
+          </tr>
+        </table>
+
+        <br></br>
+        <br></br>
+        <h2 style={{ color: "white", textAlignLast: "center" }}>
+          ※ 확진자 연령별 현황
+        </h2>
+        {agelist2}
       </div>
-      
     );
   }
 }
