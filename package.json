@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "express": "^4.16.4",
     "node-cron": "^2.0.3",
     "react-scroll": "^1.8.0",

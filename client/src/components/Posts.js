@@ -292,6 +292,7 @@ class Posts extends Component {
 
     return (
       <div>
+        <br></br><br></br><br></br><br></br>
         <table
           style={{ textAlignLast: "center", width: "-webkit-fill-available" }}
         >
