@@ -404,6 +404,10 @@ class Product extends Component {
             <div>
                 <br></br>
                 <br></br><br></br>
+                <h2 style={{ color: "white", textAlignLast: "center" }}>
+                ※ 면역력 증가 상품
+              </h2>
+              <br></br>
                 <StyledTableContainer2 component={Paper}>
                 <Table>
                     <TableHead>
