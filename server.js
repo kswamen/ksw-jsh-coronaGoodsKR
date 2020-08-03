@@ -4,6 +4,7 @@ const { getNews, getDay, getDay2, getDay3,getDay4 } = require("./crawl.js");
 
 
 const { getNewestNews } = require("./crawlNewestNews.js");
+const { getProduct } = require("./crawlProduct.js");
 const fs = require("fs");
 
 const bodyParser = require("body-parser");
@@ -12,6 +13,7 @@ const port = process.env.PORT || 5000;
 const cron = require("node-cron");
 
 const newsJSON = fs.readFileSync("./newestNewsData.json");
+const ProudctJSON = fs.readFileSync("./product.json");
 const newsData = JSON.parse(newsJSON);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,10 +32,17 @@ async function getNewsAsync() {
   const data = await getNewestNews();
   console.log("NewestNews", data);
 }
+async function getProductAsync() {
+  const Product_data = await getProduct();
+  console.log("Product = ", Product_data);
+  console.log(ProudctJSON.text);
+}
+
 
 cron.schedule("*/1 * * * *", async () => {
   console.log("running a task every two minutes");
   await getNewsAsync();
+  await getProductAsync();
 });
 
 // app.use('/api/crawl',async(req,res) => {
@@ -43,6 +52,10 @@ cron.schedule("*/1 * * * *", async () => {
 //             {id : 1}]
 //     );
 // })
+
+app.get("/api/product",async(req,res)=> {
+  res.send(ProudctJSON);
+})
 
 app.get("/api/news", async (req, res) => {
   res.send(newsJSON);
