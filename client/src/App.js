@@ -5,6 +5,8 @@ import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
 import bg1 from "./image/bg1.jpg";
 
+import Login from "./pages/login";
+
 const styles = (theme) => ({
   firstDiv: {
     backgroundImage: "url(" + bg1 + ")",
