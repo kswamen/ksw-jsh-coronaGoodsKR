@@ -32,7 +32,7 @@ export default function Scroller() {
             smooth={true}
             duration={500}
           >
-            Total Patients
+            Patients
           </Link>
         </Button>
         <Button>
@@ -43,7 +43,7 @@ export default function Scroller() {
             smooth={true}
             duration={500}
           >
-            Mask
+            Products
           </Link>
         </Button>
         <Button>

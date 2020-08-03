@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
 }));
 
 export default function Appbar() {
@@ -26,7 +23,10 @@ export default function Appbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ background: "#ff69b4", opacity: 1.0 }}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "rgba( 52, 52, 52, 0.8)" }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
@@ -36,15 +36,20 @@ export default function Appbar() {
           >
             <img style={{ width: 80, height: 70 }} src={imgMask} />
           </IconButton>
-          <Typing speed={150}>
-            <Typography
-              variant="h4"
-              className={classes.title}
-              color="textPrimary"
-            >
+          <Typing speed={10}>
+            <Typography variant="h4" color="#ffffff">
               CoronaGoodsKR
             </Typography>
           </Typing>
+          <Button
+            variant="outlined"
+            color="default"
+            style={{ marginLeft: "auto", borderColor: "#ffffff" }}
+          >
+            <Typography style={{ color: "#ffffff" }} variant="h5">
+              Login
+            </Typography>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
