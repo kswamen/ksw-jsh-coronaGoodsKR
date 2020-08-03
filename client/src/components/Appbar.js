@@ -41,15 +41,54 @@ export default function Appbar() {
               CoronaGoodsKR
             </Typography>
           </Typing>
-          <Button
-            variant="outlined"
-            color="default"
-            style={{ marginLeft: "auto", borderColor: "#ffffff" }}
+
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "auto",
+              position: "relative",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            <Typography style={{ color: "#ffffff" }} variant="h5">
-              Login
-            </Typography>
-          </Button>
+            <Button color="default">
+              <Typography
+                style={{ color: "#ffffff", padding: "15px" }}
+                variant="h5"
+              >
+                Total Patients
+              </Typography>
+            </Button>
+            <Button color="default">
+              <Typography
+                style={{ color: "#ffffff", padding: "15px" }}
+                variant="h5"
+              >
+                Products
+              </Typography>
+            </Button>
+            <Button color="default">
+              <Typography
+                style={{
+                  color: "#ffffff",
+                  padding: "15px",
+                  marginRight: "15px",
+                }}
+                variant="h5"
+              >
+                News
+              </Typography>
+            </Button>
+            <Button
+              variant="outlined"
+              color="default"
+              style={{ borderColor: "#ffffff", height: "30%" }}
+            >
+              <Typography style={{ color: "#ffffff" }} variant="h5">
+                Login
+              </Typography>
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
