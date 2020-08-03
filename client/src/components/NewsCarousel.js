@@ -65,7 +65,7 @@ class NewsCarousel extends React.Component {
     return (
       <Slider
         style={{
-          top: "5vh",
+          top: "9.5vh",
           marginLeft: "15vw",
           width: "70vw",
           height: "85vh",

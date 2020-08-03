@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import imgMask from "../image/CoronaIcon.png";
 import Typing from "react-typing-animation";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +25,7 @@ export default function Appbar() {
   return (
     <div className={classes.root}>
       <AppBar
-        position="static"
+        position="fixed"
         style={{ backgroundColor: "rgba( 52, 52, 52, 0.8)" }}
       >
         <Toolbar>
@@ -52,32 +53,56 @@ export default function Appbar() {
             }}
           >
             <Button color="default">
-              <Typography
-                style={{ color: "#ffffff", padding: "15px" }}
-                variant="h5"
+              <Link
+                activeClass="active"
+                to="section1"
+                spy={true}
+                smooth={true}
+                duration={500}
               >
-                Total Patients
-              </Typography>
+                <Typography
+                  style={{ color: "#ffffff", padding: "15px" }}
+                  variant="h5"
+                >
+                  Total Patients
+                </Typography>
+              </Link>
             </Button>
             <Button color="default">
-              <Typography
-                style={{ color: "#ffffff", padding: "15px" }}
-                variant="h5"
+              <Link
+                activeClass="active"
+                to="section2"
+                spy={true}
+                smooth={true}
+                duration={500}
               >
-                Products
-              </Typography>
+                <Typography
+                  style={{ color: "#ffffff", padding: "15px" }}
+                  variant="h5"
+                >
+                  Products
+                </Typography>
+              </Link>
             </Button>
             <Button color="default">
-              <Typography
-                style={{
-                  color: "#ffffff",
-                  padding: "15px",
-                  marginRight: "15px",
-                }}
-                variant="h5"
+              <Link
+                activeClass="active"
+                to="section3"
+                spy={true}
+                smooth={true}
+                duration={500}
               >
-                News
-              </Typography>
+                <Typography
+                  style={{
+                    color: "#ffffff",
+                    padding: "15px",
+                    marginRight: "15px",
+                  }}
+                  variant="h5"
+                >
+                  News
+                </Typography>
+              </Link>
             </Button>
             <Button
               variant="outlined"

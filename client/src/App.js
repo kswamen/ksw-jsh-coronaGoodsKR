@@ -37,7 +37,6 @@ class App extends Component {
       <div>
         <div id="section1" className={classes.firstDiv}>
           <Appbar />
-          <Scroller />
           <Posts />
         </div>
         <div id="section2" className={classes.secondDiv}></div>
