@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Appbar from "./components/Appbar";
-import Scroller from "./components/Scroller";
 import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
