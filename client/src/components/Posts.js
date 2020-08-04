@@ -47,6 +47,16 @@ const StyledTableContainer3 = withStyles((theme) => ({
   },
 }))(TableContainer);
 
+const StyledTableContainer4 = withStyles((theme) => ({
+  root: {
+    opacity: "80%",
+    width: "auto",
+    height:'auto',
+    marginLeft: "5%",
+    marginRight: "5%",
+  },
+}))(TableContainer);
+
 class Posts extends Component {
   /* 컴포넌트 생성시 */
   /* 생명주기순서 : constructor(생성자) -> componentWillMount -> render */
@@ -164,27 +174,34 @@ class Posts extends Component {
     ));
 
     const agelist2 = crawl.map((post) => (
+      
       <div>
-        <StyledTableContainer2 component={Paper}>
+        <div>
+        <StyledTableContainer4 component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
-                <StyledTableCell align="center">구분</StyledTableCell>
-                <StyledTableCell align="center">확진자</StyledTableCell>
-                <StyledTableCell align="center">사망자</StyledTableCell>
-                <StyledTableCell align="center">치명률(%)</StyledTableCell>
+                <StyledTableCell align="center" width="25%">구분</StyledTableCell>
+                <StyledTableCell align="center" width="25%">확진자</StyledTableCell>
+                <StyledTableCell align="center" width="25%">사망자</StyledTableCell>
+                <StyledTableCell align="center" width="25%">치명률(%)</StyledTableCell>
               </TableRow>
-            </TableHead>
+            </TableHead>      
+          </Table>
+        </StyledTableContainer4>
+        </div>
+        <StyledTableContainer2 component={Paper}>
+          <Table>
             <TableBody>
               <TableRow>
-                <StyledTableCell align="center">80 이상</StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align="center" width="25%">80 이상</StyledTableCell>
+                <StyledTableCell align="center" width="25%">
                   {post.get4_80_sick}
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align="center" width="25%">
                   {post.get4_80_death}
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell align="center" width="25%">
                   {post.get4_80_critical}
                 </StyledTableCell>
               </TableRow>
