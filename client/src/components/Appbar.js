@@ -10,6 +10,8 @@ import imgMask from "../image/CoronaIcon.png";
 import Typing from "react-typing-animation";
 import { Link, animateScroll as scroll } from "react-scroll";
 
+import Login from "./Login";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -37,11 +39,10 @@ export default function Appbar() {
           >
             <img style={{ width: 80, height: 70 }} src={imgMask} />
           </IconButton>
-          <Typing speed={10}>
-            <Typography variant="h4" color="#ffffff">
-              CoronaGoodsKR
-            </Typography>
-          </Typing>
+
+          <Typography variant="h4" color="#ffffff">
+            CoronaGoodsKR
+          </Typography>
 
           <div
             style={{
@@ -113,6 +114,7 @@ export default function Appbar() {
                 Login
               </Typography>
             </Button>
+            <Login />
           </div>
         </Toolbar>
       </AppBar>

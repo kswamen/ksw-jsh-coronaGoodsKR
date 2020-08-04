@@ -14,7 +14,6 @@ const cron = require("node-cron");
 const newsJSON = fs.readFileSync("./newestNewsData.json");
 
 const ProudctJSON = fs.readFileSync("./product.json");
-const newsData = JSON.parse(newsJSON);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,7 +44,6 @@ async function getProductAsync() {
   console.log(ProudctJSON.text);
 }
 
-
 cron.schedule("*/1 * * * *", async () => {
   console.log("running a task every two minutes");
   await getNewsAsync();
@@ -60,9 +58,9 @@ cron.schedule("*/1 * * * *", async () => {
 //     );
 // })
 
-app.get("/api/product",async(req,res)=> {
+app.get("/api/product", async (req, res) => {
   res.send(ProudctJSON);
-})
+});
 
 app.get("/api/news", async (req, res) => {
   res.send(newsJSON);
