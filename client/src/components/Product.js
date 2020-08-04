@@ -371,6 +371,16 @@ const StyledTableCell = withStyles((theme) => ({
     }
   }))(TableContainer)
 
+  const StyledTableContainer1 = withStyles((theme)=> ({
+    root: {
+      opacity:'80%',
+      width:'auto',
+      marginLeft:'5%',
+      marginRight:'5%',
+      height:'auto',
+    }
+  }))(TableContainer)
+
  
 class Product extends Component {
     constructor(props) {
@@ -396,9 +406,7 @@ class Product extends Component {
       
       render() {
         const { Product_Data } = this.state;
-        //const crawllist = Product_Data.map((post) => (
-            
-       // ));
+        
         return (
             
             <div>
@@ -408,27 +416,30 @@ class Product extends Component {
                 ※ 면역력 증가 상품
               </h2>
               <br></br>
-                <StyledTableContainer2 component={Paper}>
+              <div>
+              <StyledTableContainer1 component={Paper}>
                 <Table>
                     <TableHead>
                     <TableRow>
-                        
-                        <StyledTableCell align="center">상품</StyledTableCell>
-                        <StyledTableCell align="center">제목</StyledTableCell>
-                        <StyledTableCell align="center">가격</StyledTableCell>
-                        <StyledTableCell align="center">구매</StyledTableCell>
+                        <StyledTableCell align="center" width="20%">상품</StyledTableCell>
+                        <StyledTableCell align="center" width="40%">제목</StyledTableCell>
+                        <StyledTableCell align="center" width="21%">가격</StyledTableCell>
+                        <StyledTableCell align="center" width="19%">구매</StyledTableCell>
                     </TableRow>
                     </TableHead>
+                </Table>
+                </StyledTableContainer1>
+
+              </div>
+                <StyledTableContainer2 component={Paper}>
+                <Table>
+                    
                     <TableBody>
                         {Product_Data.map(post=> {
                             return <Product_option src ={post.src} title={post.title} price={post.price} a={post.a}/>
                         })
                     }
-                    {/* <TableRow>
-                        <StyledTableCell align="center"><img src={post.src} width="80px" height="80px"></img></StyledTableCell>
-                        <StyledTableCell align="center">{post.title}</StyledTableCell>
-                        <StyledTableCell align="center">{post.price}</StyledTableCell>
-                    </TableRow> */}
+                    
                     </TableBody>
                 </Table>
                 </StyledTableContainer2>
