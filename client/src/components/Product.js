@@ -30,10 +30,6 @@
 // const rows = [
 //   createData('Cupcake', 305, 3.7, 67, 4.3),
 //   createData('Donut', 452, 25.0, 51, 4.9),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-//   createData('Honeycomb', 408, 3.2, 87, 6.5),
 // ];
 
 // function descendingComparator(a, b, orderBy) {
@@ -202,11 +198,34 @@
 //   },
 // }));
 
-// export default function EnhancedTable() {
-//   const classes = useStyles();
+// class Product extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//         Product_Data: [],
+//     };
+//   }
+
+//   componentWillMount() {
+//     this.callApi().then((res) => {
+//       this.setState({
+//         Product_Data: res,
+//       });
+//     });
+//   }
+
+//   callApi = async () => {
+//     const response = await fetch("/api/product");
+//     const body = await response.json();
+//     return body;
+//   };
+  
+//   render() {
+
+//   const {classes} = this.props;
 //   const [order, setOrder] = React.useState('asc');
 //   const [orderBy, setOrderBy] = React.useState('calories');
-//   const [selected, setSelected] = React.useState([]);
+  
 //   const [page, setPage] = React.useState(0);
 //   const [dense, setDense] = React.useState(false);
 //   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -217,34 +236,7 @@
 //     setOrderBy(property);
 //   };
 
-//   const handleSelectAllClick = (event) => {
-//     if (event.target.checked) {
-//       const newSelecteds = rows.map((n) => n.name);
-//       setSelected(newSelecteds);
-//       return;
-//     }
-//     setSelected([]);
-//   };
 
-//   const handleClick = (event, name) => {
-//     const selectedIndex = selected.indexOf(name);
-//     let newSelected = [];
-
-//     if (selectedIndex === -1) {
-//       newSelected = newSelected.concat(selected, name);
-//     } else if (selectedIndex === 0) {
-//       newSelected = newSelected.concat(selected.slice(1));
-//     } else if (selectedIndex === selected.length - 1) {
-//       newSelected = newSelected.concat(selected.slice(0, -1));
-//     } else if (selectedIndex > 0) {
-//       newSelected = newSelected.concat(
-//         selected.slice(0, selectedIndex),
-//         selected.slice(selectedIndex + 1),
-//       );
-//     }
-
-//     setSelected(newSelected);
-//   };
 
 //   const handleChangePage = (event, newPage) => {
 //     setPage(newPage);
@@ -257,7 +249,7 @@
 
  
 
-//   const isSelected = (name) => selected.indexOf(name) !== -1;
+
 
 //   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -270,7 +262,7 @@
 //         <br></br>
 //       <Paper className={classes.paper}>
       
-//         <EnhancedTableToolbar numSelected={selected.length} />
+//         <EnhancedTableToolbar />
 //         <TableContainer>
 //           <Table
 //             className={classes.table}
@@ -280,10 +272,10 @@
 //           >
 //             <EnhancedTableHead
 //               classes={classes}
-//               numSelected={selected.length}
+              
 //               order={order}
 //               orderBy={orderBy}
-//               onSelectAllClick={handleSelectAllClick}
+              
 //               onRequestSort={handleRequestSort}
 //               rowCount={rows.length}
 //             />
@@ -291,22 +283,22 @@
 //               {stableSort(rows, getComparator(order, orderBy))
 //                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 //                 .map((row, index) => {
-//                   const isItemSelected = isSelected(row.name);
-//                   const labelId = `enhanced-table-checkbox-${index}`;
+                  
+                  
 
 //                   return (
 //                     <TableRow
 //                       hover
-//                       onClick={(event) => handleClick(event, row.name)}
+                      
 //                       role="checkbox"
-//                       aria-checked={isItemSelected}
+                      
 //                       tabIndex={-1}
 //                       key={row.name}
-//                       selected={isItemSelected}
+                    
 //                     >
 //                       <TableCell padding="checkbox">
 //                       </TableCell>
-//                       <TableCell component="th" id={labelId} scope="row" padding="none">
+//                       <TableCell component="th" scope="row" padding="none">
 //                         {row.name}
 //                       </TableCell>
 //                       <TableCell align="right">{row.calories}</TableCell>
@@ -337,7 +329,8 @@
 //     </div>
 //   );
 // }
-
+// }
+// export default Product
 
 
 import React, { Component } from 'react';
@@ -350,6 +343,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Product_option from './Product_option'
+import Button from '@material-ui/core/Button';
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -363,7 +358,8 @@ const StyledTableCell = withStyles((theme) => ({
 
   const StyledTableContainer2 = withStyles((theme)=> ({
     root: {
-      opacity:'80%',
+      backgroundColor: "rgba( 255, 255, 255,0.8)",
+      //opacity:'80%',
       width:'auto',
       marginLeft:'5%',
       marginRight:'5%',
@@ -373,23 +369,29 @@ const StyledTableCell = withStyles((theme) => ({
 
   const StyledTableContainer1 = withStyles((theme)=> ({
     root: {
-      opacity:'80%',
+      backgroundColor: "rgba( 255, 255, 255,0.8)",
+      //opacity:'80%',
       width:'auto',
       marginLeft:'5%',
       marginRight:'5%',
       height:'auto',
     }
   }))(TableContainer)
+  
 
- 
 class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Product_Data: [],
         };
+        this.compareBy_ASC.bind(this);
+        this.sortBy_ASC.bind(this);
+        this.compareBy_DESC.bind(this);
+        this.sortBy_DESC.bind(this);
+      
       }
-    
+      
       componentWillMount() {
         this.callApi().then((res) => {
           this.setState({
@@ -403,17 +405,50 @@ class Product extends Component {
         const body = await response.json();
         return body;
       };
+
+      compareBy_ASC(key) {
+        return function (a, b) {
+          var x = parseInt(a[key]);
+          var y = parseInt(b[key]);
+          
+          if (x < y) return -1;
+          if (x > y) return 1;
+          return 0;
+        };
+      }
+     
+      sortBy_ASC(key) {
+        let arrayCopy = [...this.state.Product_Data];
+        arrayCopy.sort(this.compareBy_ASC(key));
+        this.setState({Product_Data : arrayCopy});
+      }
+
+      compareBy_DESC(key) {
+        return function (a, b) {
+          var x = parseInt(a[key]);
+          var y = parseInt(b[key]);
+          
+          if (x > y) return -1;
+          if (x < y) return 1;
+          return 0;
+        };
+      }
+     
+      sortBy_DESC(key) {
+        let arrayCopy = [...this.state.Product_Data];
+        arrayCopy.sort(this.compareBy_DESC(key));
+        this.setState({Product_Data : arrayCopy});
+      }
       
       render() {
-        const { Product_Data } = this.state;
-        
+        const { Product_Data } = this.state; 
         return (
             
             <div>
                 <br></br>
                 <br></br><br></br>
                 <h2 style={{ color: "white", textAlignLast: "center" }}>
-                ※ 면역력 증가 상품
+                ※ 면역력 증가 상품 (쿠팡 , 휴럼샾 , 이스더포뮬라)
               </h2>
               <br></br>
               <div>
@@ -422,27 +457,34 @@ class Product extends Component {
                     <TableHead>
                     <TableRow>
                         <StyledTableCell align="center" width="20%">상품</StyledTableCell>
-                        <StyledTableCell align="center" width="40%">제목</StyledTableCell>
-                        <StyledTableCell align="center" width="21%">가격</StyledTableCell>
-                        <StyledTableCell align="center" width="19%">구매</StyledTableCell>
+                        <StyledTableCell align="center" width="10%">상표</StyledTableCell>
+                        <StyledTableCell align="center" width="30%">제목</StyledTableCell>
+                        <StyledTableCell align="center" width="26%">가격
+                        <Button color="secondary"onClick={()=>this.sortBy_ASC('price')}>▲
+                          </Button>
+                          <Button color="secondary"onClick={()=>this.sortBy_DESC('price')}>▼
+                          </Button></StyledTableCell>
+                        <StyledTableCell align="center" width="23%">구매</StyledTableCell>
                     </TableRow>
                     </TableHead>
                 </Table>
                 </StyledTableContainer1>
-
+                
               </div>
                 <StyledTableContainer2 component={Paper}>
                 <Table>
                     
                     <TableBody>
+                        
                         {Product_Data.map(post=> {
-                            return <Product_option src ={post.src} title={post.title} price={post.price} a={post.a}/>
+                            return <Product_option src ={post.src} brand={post.brand} title={post.title} price={post.price} a={post.a}/>
                         })
                     }
                     
                     </TableBody>
                 </Table>
                 </StyledTableContainer2>
+                
             </div>
            
         );
