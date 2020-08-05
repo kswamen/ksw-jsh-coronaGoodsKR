@@ -358,7 +358,8 @@ const StyledTableCell = withStyles((theme) => ({
 
   const StyledTableContainer2 = withStyles((theme)=> ({
     root: {
-      opacity:'80%',
+      backgroundColor: "rgba( 255, 255, 255,0.8)",
+      //opacity:'80%',
       width:'auto',
       marginLeft:'5%',
       marginRight:'5%',
@@ -368,7 +369,8 @@ const StyledTableCell = withStyles((theme) => ({
 
   const StyledTableContainer1 = withStyles((theme)=> ({
     root: {
-      opacity:'80%',
+      backgroundColor: "rgba( 255, 255, 255,0.8)",
+      //opacity:'80%',
       width:'auto',
       marginLeft:'5%',
       marginRight:'5%',
@@ -446,7 +448,7 @@ class Product extends Component {
                 <br></br>
                 <br></br><br></br>
                 <h2 style={{ color: "white", textAlignLast: "center" }}>
-                ※ 면역력 증가 상품 (쿠팡 , 휴럼샾)
+                ※ 면역력 증가 상품 (쿠팡 , 휴럼샾 , 이스더포뮬라)
               </h2>
               <br></br>
               <div>
@@ -455,15 +457,13 @@ class Product extends Component {
                     <TableHead>
                     <TableRow>
                         <StyledTableCell align="center" width="20%">상품</StyledTableCell>
-                        <StyledTableCell align="center" width="40%">제목</StyledTableCell>
-                        <StyledTableCell align="right" width="26%">가격</StyledTableCell>
-                        <StyledTableCell>  
-                          <Button color="secondary"onClick={()=>this.sortBy_ASC('price')}>▲
+                        <StyledTableCell align="center" width="10%">상표</StyledTableCell>
+                        <StyledTableCell align="center" width="30%">제목</StyledTableCell>
+                        <StyledTableCell align="center" width="26%">가격
+                        <Button color="secondary"onClick={()=>this.sortBy_ASC('price')}>▲
                           </Button>
                           <Button color="secondary"onClick={()=>this.sortBy_DESC('price')}>▼
-                          </Button>
-                        </StyledTableCell>
-                        
+                          </Button></StyledTableCell>
                         <StyledTableCell align="center" width="23%">구매</StyledTableCell>
                     </TableRow>
                     </TableHead>
@@ -477,7 +477,7 @@ class Product extends Component {
                     <TableBody>
                         
                         {Product_Data.map(post=> {
-                            return <Product_option src ={post.src} title={post.title} price={post.price} a={post.a}/>
+                            return <Product_option src ={post.src} brand={post.brand} title={post.title} price={post.price} a={post.a}/>
                         })
                     }
                     
