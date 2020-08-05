@@ -8,8 +8,9 @@ class Product_option extends React.Component {
             <TableRow>
                 <TableCell width="20%" align="center"><img src={this.props.src} width="80px" height="80px"/></TableCell>
                 <TableCell width="40%" align="center">{this.props.title}</TableCell>
-                <TableCell width="25%" align="center">{this.props.price}</TableCell>
-                <TableCell width="15%" align="center"><a href={this.props.a}>구매</a></TableCell>
+                <TableCell width="25%" align="right"> <h2>{this.props.price}</h2></TableCell>
+                <TableCell ></TableCell>
+                <TableCell width="10%" align="center"><a href={this.props.a}>구매</a></TableCell>
             </TableRow>
         )
     }
