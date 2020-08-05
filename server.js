@@ -15,7 +15,6 @@ const newsJSON = fs.readFileSync("./newestNewsData.json");
 
 const ProudctJSON = fs.readFileSync("./product.json");
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -45,7 +44,6 @@ async function getProductAsync() {
  console.log("Product =" +"  "+Product_data);
 }
 
-
 cron.schedule("*/1 * * * *", async () => {
   console.log("running a task every two minutes");
   await getProductAsync();
@@ -61,9 +59,9 @@ cron.schedule("*/1 * * * *", async () => {
 //     );
 // })
 
-app.get("/api/product",async(req,res)=> {
+app.get("/api/product", async (req, res) => {
   res.send(ProudctJSON);
-})
+});
 
 app.get("/api/news", async (req, res) => {
   res.send(newsJSON);

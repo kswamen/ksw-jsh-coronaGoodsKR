@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+#JSONs
+/newestNewsData.json
+/product.json
+
 # testing
 /coverage
 

@@ -52,7 +52,7 @@ class NewsCarousel extends React.Component {
               <img src={news.src} />
               <div>
                 <h3>
-                  <text>{news.title}</text>
+                  <text> {news.title}</text>
                 </h3>
               </div>
               <text style={{ borderRadius: 0 }}>{news.subtitle}</text>

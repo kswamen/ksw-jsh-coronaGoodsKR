@@ -4,9 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
 import bg1 from "./image/bg1.jpg";
-import Product from "./components/Product"
-
-import Login from "./pages/login";
+import Product from "./components/Product";
+import Login from "./components/Login";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -42,8 +41,7 @@ class App extends Component {
           <Posts />
         </div>
         <div id="section2" className={classes.secondDiv}>
-          
-          <Product/>
+          <Product />
         </div>
         <div id="section3" className={classes.thirdDiv}>
           <NewsCarousel />
