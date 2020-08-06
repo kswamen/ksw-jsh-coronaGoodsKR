@@ -3,7 +3,7 @@ const express = require("express");
 const { getNews, getDay, getDay2, getDay3, getDay4 } = require("./crawl.js");
 
 const { getNewestNews } = require("./crawlNewestNews.js");
-const { getProduct1} = require("./crawlProduct.js");
+const { getProduct1 } = require("./crawlProduct.js");
 const fs = require("fs");
 
 const bodyParser = require("body-parser");
@@ -40,8 +40,8 @@ async function getNewsAsync() {
 }
 async function getProductAsync() {
   const Product_data = await getProduct1();
- // const Product_data2 = await getProduct2();
- console.log("Product =" +"  "+Product_data);
+  // const Product_data2 = await getProduct2();
+  console.log("Product =" + "  " + Product_data);
 }
 
 cron.schedule("*/1 * * * *", async () => {
@@ -49,7 +49,6 @@ cron.schedule("*/1 * * * *", async () => {
   await getProductAsync();
   await getNewsAsync();
 });
-
 
 // app.use('/api/crawl',async(req,res) => {
 //   const text = await handleAsync();

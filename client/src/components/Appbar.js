@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import imgMask from "../image/CoronaIcon.png";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 import Login from "./Login";
 
@@ -94,7 +94,7 @@ class Appbar extends React.Component {
                 }}
               >
                 <Button color="default">
-                  <Link
+                  <ScrollLink
                     activeClass="active"
                     to="section1"
                     spy={true}
@@ -107,10 +107,10 @@ class Appbar extends React.Component {
                     >
                       Total Patients
                     </Typography>
-                  </Link>
+                  </ScrollLink>
                 </Button>
                 <Button color="default">
-                  <Link
+                  <ScrollLink
                     activeClass="active"
                     to="section2"
                     spy={true}
@@ -123,10 +123,10 @@ class Appbar extends React.Component {
                     >
                       Products
                     </Typography>
-                  </Link>
+                  </ScrollLink>
                 </Button>
                 <Button color="default">
-                  <Link
+                  <ScrollLink
                     activeClass="active"
                     to="section3"
                     spy={true}
@@ -142,30 +142,22 @@ class Appbar extends React.Component {
                     >
                       News
                     </Typography>
-                  </Link>
+                  </ScrollLink>
                 </Button>
                 {!this.state.isLoggedIn ? (
                   ""
                 ) : (
                   <Button color="default">
-                    <Link
-                      activeClass="active"
-                      to="section3"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
+                    <Typography
+                      style={{
+                        color: "#50bcdf",
+                        padding: "15px",
+                        marginRight: "15px",
+                      }}
+                      variant="h5"
                     >
-                      <Typography
-                        style={{
-                          color: "#50bcdf",
-                          padding: "15px",
-                          marginRight: "15px",
-                        }}
-                        variant="h5"
-                      >
-                        Bulletin Board
-                      </Typography>
-                    </Link>
+                      Bulletin Board
+                    </Typography>
                   </Button>
                 )}
               </div>

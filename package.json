@@ -19,7 +19,8 @@
     "react-typing-animation": "^1.6.2"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "cross-env": "^7.0.2"
   },
   "keywords": [],
   "main": "server.js",
