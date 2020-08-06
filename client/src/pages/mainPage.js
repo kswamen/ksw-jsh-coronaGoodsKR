@@ -6,6 +6,7 @@ import bg1 from "../image/bg1.jpeg";
 import bg2 from "../image/bg2.jpg";
 import bg3 from "../image/bg3.jpg";
 import Product from "../components/Product";
+import Appbar from "../components/Appbar";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -39,6 +40,7 @@ class mainPage extends Component {
     const { classes } = this.props;
     return (
       <>
+        <Appbar />
         <div id="section1" className={classes.firstDiv}>
           <Posts />
         </div>

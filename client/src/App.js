@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Appbar from "./components/Appbar";
 import { withStyles } from "@material-ui/core/styles";
+import { Router, Switch, Route } from "react-router-dom";
 import MainPage from "./pages/mainPage";
+import bulletinBoard from "./pages/bulletinBoard";
+import history from "./components/History";
 
 const styles = (theme) => ({});
 
@@ -10,9 +13,13 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Appbar />
         <div>
-          <MainPage />
+          <Router history={history}>
+            <Switch>
+              <Route path="/" exact component={MainPage} />
+              <Route path="/BBS" exact component={bulletinBoard} />
+            </Switch>
+          </Router>
         </div>
       </div>
     );

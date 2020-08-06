@@ -76,12 +76,16 @@ class Appbar extends React.Component {
                   color="inherit"
                   aria-label="menu"
                   style={{ alignSelf: "flex-start" }}
+                  href="/"
                 >
-                  <img style={{ width: 80, height: 70 }} src={imgMask} />
+                  <img
+                    style={{ width: 80, height: 70, paddingRight: "10px" }}
+                    src={imgMask}
+                  />
+                  <Typography variant="h4" color="#ffffff">
+                    CoronaGoodsKR
+                  </Typography>
                 </IconButton>
-                <Typography variant="h4" color="#ffffff">
-                  CoronaGoodsKR
-                </Typography>
               </div>
               <div
                 style={{
@@ -147,7 +151,7 @@ class Appbar extends React.Component {
                 {!this.state.isLoggedIn ? (
                   ""
                 ) : (
-                  <Button color="default">
+                  <Button href="/BBS" color="default">
                     <Typography
                       style={{
                         color: "#50bcdf",
