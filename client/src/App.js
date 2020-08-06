@@ -13,14 +13,11 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <div>
-          <Router history={history}>
-            <Switch>
-              <Route path="/" exact component={MainPage} />
-              <Route path="/BBS" exact component={bulletinBoard} />
-            </Switch>
-          </Router>
-        </div>
+        {/*원래 위에 Router 들어가 있었음*/}
+        <Switch>
+          <Route path="/" exact component={MainPage} />
+          <Route path="/BBS" exact component={bulletinBoard} />
+        </Switch>
       </div>
     );
   }
