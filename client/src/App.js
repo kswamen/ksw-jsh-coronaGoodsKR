@@ -3,7 +3,9 @@ import Appbar from "./components/Appbar";
 import { withStyles } from "@material-ui/core/styles";
 import NewsCarousel from "./components/NewsCarousel";
 import Posts from "./components/Posts";
-import bg1 from "./image/bg1.jpg";
+import bg1 from "./image/bg1.jpeg";
+import bg2 from "./image/bg2.jpg";
+import bg3 from "./image/bg3.jpg";
 import Product from "./components/Product";
 import Login from "./components/Login";
 
@@ -17,12 +19,15 @@ const styles = (theme) => ({
     height: "100vh",
   },
   secondDiv: {
-    backgroundColor: "#1176a7",
+    backgroundImage: "url(" + bg2 + ")",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     width: "auto",
     height: "100vh",
   },
   thirdDiv: {
-    backgroundImage: "url(" + bg1 + ")",
+    backgroundImage: "url(" + bg3 + ")",
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
