@@ -36,8 +36,8 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div>
+        <Appbar />
         <div id="section1" className={classes.firstDiv}>
-          <Appbar />
           <Posts />
         </div>
         <div id="section2" className={classes.secondDiv}>

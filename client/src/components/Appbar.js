@@ -28,18 +28,22 @@ class Appbar extends React.Component {
       anchorEl: null,
       isLoggedIn: false,
     };
+
+    this.setLoggedInTrue = this.setLoggedInTrue.bind(this);
+    this.setLoggedInFalse = this.setLoggedInFalse.bind(this);
   }
+
+  setLoggedInTrue = () => {
+    this.setState({ isLoggedIn: true });
+  };
+
+  setLoggedInFalse = () => {
+    this.setState({ isLoggedIn: false });
+  };
 
   render() {
     const { classes } = this.props;
 
-    const handleClick = (event) => {
-      this.setState({ anchorEl: event.currentTarget });
-    };
-
-    const handleClose = () => {
-      this.setState({ anchorEl: null });
-    };
     return (
       <div className={classes.root}>
         <AppBar
@@ -133,7 +137,6 @@ class Appbar extends React.Component {
                       style={{
                         color: "#ffffff",
                         padding: "15px",
-                        marginRight: "15px",
                       }}
                       variant="h5"
                     >
@@ -141,8 +144,36 @@ class Appbar extends React.Component {
                     </Typography>
                   </Link>
                 </Button>
+                {!this.state.isLoggedIn ? (
+                  ""
+                ) : (
+                  <Button color="default">
+                    <Link
+                      activeClass="active"
+                      to="section3"
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                    >
+                      <Typography
+                        style={{
+                          color: "#50bcdf",
+                          padding: "15px",
+                          marginRight: "15px",
+                        }}
+                        variant="h5"
+                      >
+                        Bulletin Board
+                      </Typography>
+                    </Link>
+                  </Button>
+                )}
               </div>
-              <Login />
+              <Login
+                isLoggedIn={this.state.isLoggedIn}
+                setLoggedInTrue={this.setLoggedInTrue}
+                setLoggedInFalse={this.setLoggedInFalse}
+              />
             </div>
           </Toolbar>
         </AppBar>

@@ -32,11 +32,8 @@ export default class Login extends React.Component {
         name: res.profileObj.name,
         provider: "google",
         img: res.profileObj.imageUrl,
-        isLoggedIn: true,
       });
-      console.log(res);
-      console.log(this.state.id);
-      console.log(this.state.name);
+      this.props.setLoggedInTrue();
     };
 
     const responseGoogleOnFailure = (res) => {
@@ -44,8 +41,7 @@ export default class Login extends React.Component {
     };
 
     const logoutPressed = () => {
-      this.setState({ isLoggedIn: false });
-      console.log(this.state.isLoggedIn);
+      this.props.setLoggedInFalse();
     };
 
     return (
@@ -57,7 +53,7 @@ export default class Login extends React.Component {
           marginLeft: "auto",
         }}
       >
-        {!this.state.isLoggedIn ? (
+        {!this.props.isLoggedIn ? (
           ""
         ) : (
           <Button
@@ -86,7 +82,7 @@ export default class Login extends React.Component {
           style={{ borderColor: "#ffffff", height: "30%" }}
         >
           <Typography style={{ color: "#ffffff" }} variant="h5">
-            {!this.state.isLoggedIn ? "Login" : "Logout"}
+            {!this.props.isLoggedIn ? "Login" : "Logout"}
           </Typography>
         </Button>
         <Menu
@@ -96,7 +92,7 @@ export default class Login extends React.Component {
           open={Boolean(this.state.anchorEl)}
           onClose={handleClose}
         >
-          {!this.state.isLoggedIn ? (
+          {!this.props.isLoggedIn ? (
             <MenuItem onClick={handleClose}>
               <GoogleLogin
                 clientId={
