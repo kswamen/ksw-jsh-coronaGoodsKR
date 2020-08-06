@@ -39,7 +39,7 @@ async function getNewestNews() {
 
       if (index > 20) {
         fs.writeFileSync(dataPath, JSON.stringify(dataArr));
-        console.log("data written on json file");
+        //console.log("data written on json file");
       }
     }
   );

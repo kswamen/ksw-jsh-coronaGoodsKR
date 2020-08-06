@@ -24,28 +24,20 @@ async function handleAsync() {
   const day2 = await getDay2();
   const day3 = await getDay3();
   const day4 = await getDay4();
-  console.log(
-    sum + "      " + day + "     " + day2,
-    "     ",
-    day3,
-    "   ",
-    day4
-  );
+
   return [sum, day, day2, day3, day4];
 }
 
 async function getNewsAsync() {
   const data = await getNewestNews();
-  console.log("NewestNews", data);
 }
 async function getProductAsync() {
   const Product_data = await getProduct1();
   // const Product_data2 = await getProduct2();
-  console.log("Product =" + "  " + Product_data);
 }
 
 cron.schedule("*/1 * * * *", async () => {
-  console.log("running a task every two minutes");
+  console.log("running a task every one minutes");
   await getProductAsync();
   await getNewsAsync();
 });
