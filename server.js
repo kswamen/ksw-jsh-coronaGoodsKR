@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const cron = require("node-cron");
-
+const socket = require('socket.io');
 const newsJSON = fs.readFileSync("./newestNewsData.json");
 
 const ProudctJSON = fs.readFileSync("./product.json");
@@ -146,4 +146,19 @@ app.get("/api/crawl", async (req, res) => {
   ]);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+//server.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+server = app.listen(5000, function(){
+  console.log('server is running on port 5000')
+});
+
+io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+});

@@ -7,6 +7,7 @@ import bg2 from "../image/bg2.jpg";
 import bg3 from "../image/bg3.jpg";
 import Product from "../components/Product";
 import Appbar from "../components/Appbar";
+import Chat from "../components/Chat";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -46,6 +47,9 @@ class mainPage extends Component {
         </div>
         <div id="section2" className={classes.secondDiv}>
           <Product />
+        </div>
+        <div id="section2" className={classes.secondDiv}>
+          <Chat/>
         </div>
         <div id="section3" className={classes.thirdDiv}>
           <NewsCarousel />
