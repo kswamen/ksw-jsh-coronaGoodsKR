@@ -7,9 +7,7 @@ let html = "";
 async function getHtml() {
   try {
     return await axios.get("https://www.yna.co.kr/coronavirus/news");
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 async function getNewestNews() {

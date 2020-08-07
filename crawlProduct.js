@@ -25,9 +25,7 @@ async function getHtml1() {
     return await axios.get(
       "https://www.coupang.com/np/categories/306749?channel=plp_C2"
     );
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 async function getHtml2() {
@@ -35,9 +33,7 @@ async function getHtml2() {
     return await axios.get(
       "http://www.hurumshop.com/goods/goods_list.php?cateCd=038006"
     );
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 async function getHtml3() {
@@ -45,9 +41,7 @@ async function getHtml3() {
     return await axios.get(
       "https://www.esthermall.co.kr/front/product_list.php?ct_id=001001016"
     );
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 async function getProduct1() {

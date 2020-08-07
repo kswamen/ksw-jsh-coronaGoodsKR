@@ -8,9 +8,7 @@ async function getHtml() {
     return await axios.get(
       "http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun="
     );
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 async function getNews() {
