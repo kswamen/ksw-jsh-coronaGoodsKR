@@ -47,6 +47,7 @@ class Appbar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar
+          id="Appbar-bbs"
           position="fixed"
           style={{ backgroundColor: "rgba( 52, 52, 52, 0.8)", display: "flex" }}
         >

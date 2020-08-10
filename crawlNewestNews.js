@@ -6,9 +6,9 @@ let html = "";
 
 async function getHtml() {
   try {
-    return await axios.get("https://www.yna.co.kr/coronavirus/news");
+    return await axios.get("https://www.yna.co.kr/news");
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
@@ -21,13 +21,16 @@ async function getNewestNews() {
   const dataPath = "./newestNewsData.json";
   const $ = cheerio.load(html.data);
 
-  $(".container .contents .content01 .headline-zone li article").each(
-    async function (index, item) {
-      var src = "http:" + $(item).find("img").attr("src");
-      var title = $(item).find("img").attr("alt");
-      var subtitle = $(item).find(".lead").text();
-      var a = $(item).find(".tit-news").find("a").attr("href");
+  $(".container .content03 .section01 .list li").each(async function (
+    index,
+    item
+  ) {
+    var src = "http:" + $(item).find("img").attr("src");
+    var title = $(item).find("img").attr("alt");
+    var subtitle = $(item).find(".lead").text();
+    var a = $(item).find(".img-con").find("a").attr("href");
 
+    if (src != null && title != null && subtitle != null && a != null) {
       var data = {
         title: title,
         subtitle: subtitle,
@@ -36,25 +39,14 @@ async function getNewestNews() {
       };
 
       dataArr.push(data);
+      console.log(data);
 
       if (index > 20) {
         fs.writeFileSync(dataPath, JSON.stringify(dataArr));
-        //console.log("data written on json file");
+        console.log("data written on json file");
       }
     }
-  );
-}
-
-function getNumberInformat(num) {
-  var min = 0,
-    max = 99;
-  if (min <= num && num <= max) {
-    if (0 <= num && num <= 9) {
-      return "0" + num;
-    } else {
-      return num;
-    }
-  }
+  });
 }
 
 module.exports = { getNewestNews };
