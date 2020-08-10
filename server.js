@@ -36,7 +36,7 @@ async function getProductAsync() {
   // const Product_data2 = await getProduct2();
 }
 
-cron.schedule("*/10 * * * *", async () => {
+cron.schedule("*/1 * * * *", async () => {
   console.log("running a task every one minutes");
   await getProductAsync();
   await getNewsAsync();
