@@ -4,6 +4,7 @@ import NewsCarousel from "../components/NewsCarousel";
 import Posts from "../components/Posts";
 import bg1 from "../image/bg1.jpeg";
 import AppbarBBS from "../components/AppbarBBS";
+import BulletinBoardMain from "../components/BulletinBoardMain";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -17,12 +18,28 @@ const styles = (theme) => ({
 });
 
 class bulletinBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      AppbarHeight: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      AppbarHeight: document.getElementById("Appbar-bbs").clientHeight,
+    });
+    console.log(this.state.AppbarHeight);
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <>
         <AppbarBBS />
-        <div id="section1" className={classes.firstDiv}></div>
+        <div id="section1" className={classes.firstDiv}>
+          <BulletinBoardMain AppbarHeight={this.state.AppbarHeight} />
+        </div>
       </>
     );
   }

@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const cron = require("node-cron");
-const socket = require('socket.io');
+const socket = require("socket.io");
 const newsJSON = fs.readFileSync("./newestNewsData.json");
 
 const ProudctJSON = fs.readFileSync("./product.json");
@@ -36,7 +36,7 @@ async function getProductAsync() {
   // const Product_data2 = await getProduct2();
 }
 
-cron.schedule("*/1 * * * *", async () => {
+cron.schedule("*/10 * * * *", async () => {
   console.log("running a task every one minutes");
   await getProductAsync();
   await getNewsAsync();
@@ -148,9 +148,8 @@ app.get("/api/crawl", async (req, res) => {
 
 //server.listen(port, () => console.log(`Listening on port ${port}`));
 
-
-server = app.listen(5000, function(){
-  console.log('server is running on port 5000')
+server = app.listen(5000, function () {
+  console.log("server is running on port 5000");
 });
 
 io = socket(server);
@@ -158,7 +157,7 @@ io = socket(server);
 io.on('connection', (socket) => {
    // console.log(socket.id);
 
-    socket.on('SEND_MESSAGE', function(data){
-        io.emit('RECEIVE_MESSAGE', data);
-    })
+  socket.on("SEND_MESSAGE", function (data) {
+    io.emit("RECEIVE_MESSAGE", data);
+  });
 });
