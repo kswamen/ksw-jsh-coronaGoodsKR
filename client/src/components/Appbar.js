@@ -148,22 +148,18 @@ class Appbar extends React.Component {
                     </Typography>
                   </ScrollLink>
                 </Button>
-                {!this.state.isLoggedIn ? (
-                  ""
-                ) : (
-                  <Button href="/BBS" color="default">
-                    <Typography
-                      style={{
-                        color: "#50bcdf",
-                        padding: "15px",
-                        marginRight: "15px",
-                      }}
-                      variant="h5"
-                    >
-                      Bulletin Board
-                    </Typography>
-                  </Button>
-                )}
+                <Button href="/BBS" color="default">
+                  <Typography
+                    style={{
+                      color: "#50bcdf",
+                      padding: "15px",
+                      marginRight: "15px",
+                    }}
+                    variant="h5"
+                  >
+                    Bulletin Board
+                  </Typography>
+                </Button>
               </div>
               <Login
                 isLoggedIn={this.state.isLoggedIn}
