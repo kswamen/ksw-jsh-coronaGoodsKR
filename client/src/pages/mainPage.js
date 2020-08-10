@@ -8,6 +8,9 @@ import bg3 from "../image/bg3.jpg";
 import Product from "../components/Product";
 import Appbar from "../components/Appbar";
 import Chat from "../components/Chat";
+import logo from "../image/mask.png";
+
+import LoadingScreen from "react-loading-screen";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -41,28 +44,50 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     width: "auto",
     height: "100vh",
-    
   },
 });
 
 class mainPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    let that = this;
+    setTimeout(function () {
+      that.setState({ isLoading: false });
+    }, 2000);
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <>
-        <Appbar />
-        <div id="section1" className={classes.firstDiv}>
-          <Posts />
-        </div>
-        <div id="section2" className={classes.secondDiv}>
-          <Product />
-        </div>
-        <div id="section3" className={classes.thirdDiv}>
-          <NewsCarousel />
-        </div>
-        <div id="section4" className={classes.fourthDiv}>
-          <Chat/>
-        </div>
+        <LoadingScreen
+          loading={this.state.isLoading}
+          bgColor="#f1f1f1"
+          spinnerColor="#9ee5f8"
+          textColor="#676767"
+          logoSrc={logo}
+          text="메인 페이지로 이동 중..."
+        >
+          <Appbar />
+          <div id="section1" className={classes.firstDiv}>
+            <Posts />
+          </div>
+          <div id="section2" className={classes.secondDiv}>
+            <Product />
+          </div>
+          <div id="section3" className={classes.thirdDiv}>
+            <NewsCarousel />
+          </div>
+          <div id="section4" className={classes.fourthDiv}>
+            <Chat />
+          </div>
+        </LoadingScreen>
       </>
     );
   }
