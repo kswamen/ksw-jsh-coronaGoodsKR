@@ -34,6 +34,15 @@ const styles = (theme) => ({
     width: "auto",
     height: "100vh",
   },
+  fourthDiv: {
+    backgroundImage: "url(" + bg1 + ")",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    width: "auto",
+    height: "100vh",
+    
+  },
 });
 
 class mainPage extends Component {
@@ -48,11 +57,11 @@ class mainPage extends Component {
         <div id="section2" className={classes.secondDiv}>
           <Product />
         </div>
-        <div id="section2" className={classes.secondDiv}>
-          <Chat/>
-        </div>
         <div id="section3" className={classes.thirdDiv}>
           <NewsCarousel />
+        </div>
+        <div id="section4" className={classes.fourthDiv}>
+          <Chat/>
         </div>
       </>
     );

@@ -160,6 +160,41 @@ class Appbar extends React.Component {
                     Bulletin Board
                   </Typography>
                 </Button>
+                <Button color="default">
+                  <ScrollLink
+                    activeClass="active"
+                    to="section4"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    <Typography
+                      style={{
+                        color: "#ffffff",
+                        padding: "15px",
+                      }}
+                      variant="h5"
+                    >
+                      Chat
+                    </Typography>
+                  </ScrollLink>
+                </Button>
+                {!this.state.isLoggedIn ? (
+                  ""
+                ) : (
+                  <Button href="/BBS" color="default">
+                    <Typography
+                      style={{
+                        color: "#50bcdf",
+                        padding: "15px",
+                        marginRight: "15px",
+                      }}
+                      variant="h5"
+                    >
+                      Bulletin Board
+                    </Typography>
+                  </Button>
+                )}
               </div>
               <Login
                 isLoggedIn={this.state.isLoggedIn}
