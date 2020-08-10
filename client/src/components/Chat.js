@@ -7,6 +7,7 @@ import { withStyles} from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Clock from 'react-live-clock'
 
 const StyledTableContainer = withStyles((theme) => ({
     root: {
@@ -44,16 +45,30 @@ const StyleText2 = withStyles((theme)=> ({
 
 }))(TextField)
 
+let today = new Date();   
+
+let hours = today.getHours(); // 시
+let minutes = today.getMinutes();  // 분
+let seconds = today.getSeconds();  // 초
+
 class Chat extends React.Component{
     
     constructor(props){
         super(props);
-
+        let today = new Date();   
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+        let seconds = today.getSeconds();  // 초
         this.state = {
+            
             // username: '',
             message: '',
-            messages: []
+            messages: [],
+            time: hours +':'+minutes+':'+seconds
+          
         };
+     
+        
 
         this.socket = io('http://localhost:5000');
 
@@ -65,25 +80,46 @@ class Chat extends React.Component{
            // console.log(data);
             this.setState({messages: [...this.state.messages, data]});
        //     console.log(this.state.messages);
+       
         };
 
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
-                message: this.state.message
+                message: this.state.message,
+                time: this.state.time
             })
             this.setState({message: ''});
+            
 
         }
 
-        const onKeyPress = (e) => {
-            if(e.key =='Enter') {
-                onclick();
-            }
-        }
+        
     }
+
+    getDate = () => {
+        let today = new Date();   
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+        let seconds = today.getSeconds();  // 초
+        this.setState({
+            time: hours +':'+minutes+':'+seconds
+        });
+      };
+    
+      componentDidMount() {
+        this.oneMinuteCall = setInterval(() => this.getDate(), 600);
+      }
+    
+      componentWillUnmount() {
+        clearInterval(this.oneMinuteCall);
+      }
+
+
     render(){
+        const {time} = this.state;
+
         const divStyle = {
             marginLeft : '0%'
         }
@@ -103,7 +139,7 @@ class Chat extends React.Component{
                                     <TableBody>
                                         <TableCell>
                                             <div className="card-body">
-                                                Chatting
+                                                Chatting &nbsp; &nbsp;&nbsp;&nbsp; <Clock format={'YYYY/MM/DD ___ HH:mm:ss'} ticking={true} timezone={'Aisa/Seoul'}/>
                                                 <div className="messages">
                                                     {this.state.messages.map(message => {
                                                         return (
@@ -111,6 +147,7 @@ class Chat extends React.Component{
                                                             <TableCell>{message.author}</TableCell> 
                                                             <TableCell>:</TableCell>
                                                             <TableCell>{message.message}</TableCell>
+                                                            <TableCell>{message.time}</TableCell>
                                                             </TableRow>
                                                         )
                                                     })}
@@ -136,6 +173,9 @@ class Chat extends React.Component{
             </div>
         );
     }
+
+    
+
 }
 
 export default Chat;
