@@ -148,6 +148,25 @@ class Appbar extends React.Component {
                     </Typography>
                   </ScrollLink>
                 </Button>
+                <Button color="default">
+                  <ScrollLink
+                    activeClass="active"
+                    to="section4"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    <Typography
+                      style={{
+                        color: "#ffffff",
+                        padding: "15px",
+                      }}
+                      variant="h5"
+                    >
+                      Chat
+                    </Typography>
+                  </ScrollLink>
+                </Button>
                 {!this.state.isLoggedIn ? (
                   ""
                 ) : (
