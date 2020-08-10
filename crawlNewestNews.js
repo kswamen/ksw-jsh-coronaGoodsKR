@@ -21,7 +21,10 @@ async function getNewestNews() {
   const dataPath = "./newestNewsData.json";
   const $ = cheerio.load(html.data);
 
-  $(".container .content03 .list li").each(async function (index, item) {
+  $(".container .content03 .section01 .list li").each(async function (
+    index,
+    item
+  ) {
     var src = "http:" + $(item).find("img").attr("src");
     var title = $(item).find("img").attr("alt");
     var subtitle = $(item).find(".lead").text();
@@ -35,13 +38,12 @@ async function getNewestNews() {
         a: a.replace("//", "https://"),
       };
 
-      console.log(data);
-
       dataArr.push(data);
+      console.log(data);
 
       if (index > 20) {
         fs.writeFileSync(dataPath, JSON.stringify(dataArr));
-        //console.log("data written on json file");
+        console.log("data written on json file");
       }
     }
   });
