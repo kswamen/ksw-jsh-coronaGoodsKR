@@ -1,6 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
-import { TableContainer, Table, TableCell } from "@material-ui/core";
+import { TableContainer, Table, TableCell, colors } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import { withStyles} from "@material-ui/core/styles";
@@ -8,8 +8,9 @@ import { withStyles} from "@material-ui/core/styles";
 const StyledTableContainer = withStyles((theme) => ({
     root: {
       opacity: "80%",
-      width: "auto%",
-      height:"500px"
+      width: "50%",
+      height:"500px",
+      backgroundColor:"seashell"
     },
   }))(TableContainer);
 
@@ -30,9 +31,9 @@ class Chat extends React.Component{
         });
 
         const addMessage = data => {
-            console.log(data);
+           // console.log(data);
             this.setState({messages: [...this.state.messages, data]});
-            console.log(this.state.messages);
+       //     console.log(this.state.messages);
         };
 
         this.sendMessage = ev => {
@@ -55,11 +56,11 @@ class Chat extends React.Component{
         return (
             <div>
                 <br></br>
-            <div className="container" height="300px">
+            <div className="container">
                 <div className="row">
                     <div className="col-4">
-                        <div className="card" height="300px">
-                            <StyledTableContainer height="300px">
+                        <div className="card" >
+                            <StyledTableContainer >
                                 <Table>
                                     <TableBody>
                                         <TableCell>
@@ -83,7 +84,7 @@ class Chat extends React.Component{
                             <div className="card-footer">
                                 <input type="text" placeholder="Username" value={this.state.username}  className="form-control"/>
                                 <br/>
-                                <textarea rows="4" cols="30" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                <textarea rows="2" cols="40" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                 <br/>
                                 
                                 <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
