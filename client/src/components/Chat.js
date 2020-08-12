@@ -15,7 +15,6 @@ const StyledTableContainer = withStyles((theme) => ({
     width: "80%",
     height: "500px",
     backgroundColor: "seashell",
-
     marginBottom: "2%",
     marginTop: "5%",
   },
