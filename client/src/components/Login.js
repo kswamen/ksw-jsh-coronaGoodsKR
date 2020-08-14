@@ -70,21 +70,6 @@ export default class Login extends React.Component {
                 {!isLoggedIn ? "Login" : "Logout"}
               </Typography>
             </Button>
-            {/*
-                <LoginContext.Consumer>
-                  {({ status, setLoginStatus }) => (
-                    <button
-                      onClick={() => setLoginStatus(true)}
-                      style={{
-                        backgroundColor: "#555555",
-                        marginTop: "500px",
-                      }}
-                    >
-                      asdfasdfasdf
-                    </button>
-                  )}
-                </LoginContext.Consumer>
-        */}
 
             <Menu
               id="simple-menu"
