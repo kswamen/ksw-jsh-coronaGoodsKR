@@ -26,20 +26,8 @@ class Appbar extends React.Component {
     super(props);
     this.state = {
       anchorEl: null,
-      isLoggedIn: false,
     };
-
-    this.setLoggedInTrue = this.setLoggedInTrue.bind(this);
-    this.setLoggedInFalse = this.setLoggedInFalse.bind(this);
   }
-
-  setLoggedInTrue = () => {
-    this.setState({ isLoggedIn: true });
-  };
-
-  setLoggedInFalse = () => {
-    this.setState({ isLoggedIn: false });
-  };
 
   render() {
     const { classes } = this.props;
@@ -182,11 +170,7 @@ class Appbar extends React.Component {
                   </Typography>
                 </Button>
               </div>
-              <Login
-                isLoggedIn={this.state.isLoggedIn}
-                setLoggedInTrue={this.setLoggedInTrue}
-                setLoggedInFalse={this.setLoggedInFalse}
-              />
+              <Login />
             </div>
           </Toolbar>
         </AppBar>
