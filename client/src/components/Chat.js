@@ -124,11 +124,6 @@ class Chat extends React.Component {
                       <TableCell>
                         <div className="card-body">
                           Chatting &nbsp; &nbsp;&nbsp;&nbsp;{" "}
-                          <Clock
-                            format={"YYYY/MM/DD ___ HH:mm:ss"}
-                            ticking={true}
-                            timezone={"Aisa/Seoul"}
-                          />
                           <div className="messages">
                             {this.state.messages.map((message) => {
                               return (

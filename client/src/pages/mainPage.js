@@ -77,7 +77,7 @@ class mainPage extends Component {
           text="메인 페이지로 이동 중..."
         >
           <Appbar />
-          {/*
+
           <div id="section1" className={classes.firstDiv}>
             <Posts />
           </div>
@@ -89,7 +89,7 @@ class mainPage extends Component {
           </div>
           <div id="section4" className={classes.fourthDiv}>
             <Chat />
-          </div> */}
+          </div>
         </LoadingScreen>
       </>
     );
