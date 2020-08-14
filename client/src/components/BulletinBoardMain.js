@@ -7,6 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Moment from "react-moment";
+import Button from "@material-ui/core/Button";
 
 import mask from "../image/mask.png";
 
@@ -24,7 +26,7 @@ const StyledTableCell = withStyles((theme) => ({
     position: "sticky",
   },
   body: {
-    fontSize: 14,
+    fontSize: 20,
   },
 }))(TableCell);
 
@@ -39,85 +41,103 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, img, calories, fat, carbs, protein) {
-  return { name, img, calories, fat, carbs, protein };
-}
-const rows = [
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-  createData("Frozen yoghurt", mask, 159, 6.0, 24, 4.0),
-];
-
 class BulletinBoardMain extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      posts: [],
+    };
   }
+
+  componentDidMount() {
+    this.callApi()
+      .then((res) => this.setState({ posts: res }))
+      .catch((err) => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/customers");
+    const body = await response.json();
+    return body;
+  };
 
   render() {
     const { classes } = this.props;
     return (
-      <TableContainer
-        style={{
-          top: this.props.AppbarHeight + 15,
-          height: "auto",
-          position: "relative",
-          width: "90vw",
-          left: "5vw",
-          borderRadius: "15px",
-          border: 30,
-          borderColor: "#ffffff",
-          backgroundColor: "rgba(255, 255, 255, 0.6)",
-          maxHeight: "80vh",
-        }}
-        component={Paper}
-      >
-        <Table
-          stickyHeader
-          className={classes.table}
-          aria-label="customized table"
+      <>
+        <TableContainer
+          style={{
+            top: this.props.AppbarHeight + 15,
+            height: "auto",
+            position: "relative",
+            width: "90vw",
+            left: "5vw",
+            borderRadius: "15px",
+            border: 30,
+            borderColor: "#ffffff",
+            backgroundColor: "rgba(255, 255, 255, 0.6)",
+            maxHeight: "80vh",
+          }}
+          component={Paper}
         >
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-              <StyledTableCell align="right">Image</StyledTableCell>
-              <StyledTableCell align="right">Calories</StyledTableCell>
-              <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row">
-                  {row.name}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <img
-                    style={{ width: "100px", height: "100px" }}
-                    src={row.img}
-                  />
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          <Table
+            stickyHeader
+            className={classes.table}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">No.</StyledTableCell>
+                <StyledTableCell align="center">Image</StyledTableCell>
+                <StyledTableCell align="center">Title</StyledTableCell>
+                <StyledTableCell align="right">Writer</StyledTableCell>
+                <StyledTableCell align="right">Date</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.posts.map((row) => (
+                <StyledTableRow key={row.num}>
+                  <StyledTableCell align="center" component="th" scope="row">
+                    {row.num}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <img
+                      style={{ width: "100px", height: "100px" }}
+                      src={row.image}
+                    />
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.title}</StyledTableCell>
+                  <StyledTableCell align="right">{row.writer}</StyledTableCell>
+                  <StyledTableCell
+                    style={{ width: "15%", fontSize: 15 }}
+                    align="right"
+                  >
+                    <Moment
+                      style={{ whiteSpace: "pre" }}
+                      format="YYYY-MMM-D HH:MM"
+                      withTitle
+                    >
+                      {row.date}
+                    </Moment>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Button
+          style={{
+            backgroundColor: "#ffffff",
+            position: "fixed",
+            bottom: "0.7vw",
+            left: "45vw",
+            width: "10vw",
+            height: "2.5vw",
+          }}
+        >
+          <h3>신규 게시글 작성</h3>
+        </Button>
+      </>
     );
   }
 }

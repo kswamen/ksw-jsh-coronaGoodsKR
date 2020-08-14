@@ -6,13 +6,18 @@ const { getNewestNews } = require("./crawlNewestNews.js");
 const { getProduct1 } = require("./crawlProduct.js");
 const fs = require("fs");
 
+const data = fs.readFileSync("./database.json");
+const conf = JSON.parse(data);
+const mysql = require("mysql");
+const multer = require("multer");
+const upload = multer({ dest: "./upload" });
+
 const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5000;
 const cron = require("node-cron");
 const socket = require("socket.io");
 const newsJSON = fs.readFileSync("./newestNewsData.json");
-
 const ProudctJSON = fs.readFileSync("./product.json");
 
 app.use(bodyParser.json());
@@ -28,6 +33,23 @@ async function handleAsync() {
   return [sum, day, day2, day3, day4];
   
 }
+const connection = mysql.createConnection({
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  port: conf.port,
+  database: conf.database,
+});
+connection.connect();
+
+app.get("/api/customers", (req, res) => {
+  connection.query(
+    "Select * From posts where isDeleted = 0 order by date desc",
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  );
+});
 
 async function getNewsAsync() {
   const data = await getNewestNews();
@@ -59,6 +81,15 @@ app.get("/api/news", async (req, res) => {
   res.send(newsJSON);
 });
 
+async function handleAsync() {
+  const sum = await getNews();
+  const day = await getDay();
+  const day2 = await getDay2();
+  const day3 = await getDay3();
+  const day4 = await getDay4();
+
+  return [sum, day, day2, day3, day4];
+}
 app.get("/api/crawl", async (req, res) => {
   const text = await handleAsync();
   var accumulate = text[0];
@@ -155,8 +186,8 @@ server = app.listen(5000, function () {
 
 io = socket(server);
 
-io.on('connection', (socket) => {
-   // console.log(socket.id);
+io.on("connection", (socket) => {
+  // console.log(socket.id);
 
   socket.on("SEND_MESSAGE", function (data) {
     io.emit("RECEIVE_MESSAGE", data);
