@@ -8,6 +8,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Clock from "react-live-clock";
+import moment from "react-moment";
+
 
 const StyledTableContainer = withStyles((theme) => ({
   root: {
@@ -50,6 +52,7 @@ let seconds = today.getSeconds(); // 초
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+    
     let today = new Date();
     let hours = today.getHours(); // 시
     let minutes = today.getMinutes(); // 분
@@ -59,6 +62,7 @@ class Chat extends React.Component {
       message: "",
       messages: [],
       time: hours + ":" + minutes + ":" + seconds,
+      date: new Date()
     };
 
     this.socket = io("http://localhost:5000");
@@ -95,23 +99,29 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
-    this.oneMinuteCall = setInterval(() => this.getDate(), 600);
+    this.oneMinuteCall = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.oneMinuteCall);
   }
 
+  tick() {
+    this.setState({
+      date:new Date()
+    })
+  }
+
   render() {
     const { time } = this.state;
-
+   
     const divStyle = {
       marginLeft: "0%",
     };
     const divChat = {
       textAlign: "-webkit-center",
     };
-
+    
     return (
       <div>
         <br /> <br /> <br /> <br /> <br /> <br />
@@ -125,11 +135,13 @@ class Chat extends React.Component {
                       <TableCell>
                         <div className="card-body">
                           Chatting &nbsp; &nbsp;&nbsp;&nbsp;{" "}
-                          <Clock
+                          {/* <Clock
                             format={"YYYY/MM/DD ___ HH:mm:ss"}
-                            ticking={true}
+                            //ticking={true}
                             timezone={"Aisa/Seoul"}
-                          />
+                          /> */}
+                          
+                          {this.state.date.toLocaleString()}
                           <div className="messages">
                             {this.state.messages.map((message) => {
                               return (

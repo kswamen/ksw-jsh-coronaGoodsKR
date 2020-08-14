@@ -24,8 +24,9 @@ async function handleAsync() {
   const day2 = await getDay2();
   const day3 = await getDay3();
   const day4 = await getDay4();
-
+  
   return [sum, day, day2, day3, day4];
+  
 }
 
 async function getNewsAsync() {
