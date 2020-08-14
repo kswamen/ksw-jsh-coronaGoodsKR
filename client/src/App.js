@@ -6,18 +6,50 @@ import MainPage from "./pages/mainPage";
 import bulletinBoard from "./pages/bulletinBoard";
 import history from "./components/History";
 
+import { LoginContext } from "./components/LoginContext";
+
 const styles = (theme) => ({});
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.setLogin = (res) => {
+      this.setState({
+        isLoggedIn: true,
+        userName: res.profileObj.name,
+        userImageSrc: res.profileObj.imageUrl,
+      });
+      console.log(this.state.isLoggedIn);
+      console.log(this.state.userName);
+      console.log(this.state.userImageSrc);
+    };
+    this.setLogout = (res) => {
+      this.setState({
+        isLoggedIn: false,
+        userName: "",
+        userImageSrc: "",
+      });
+    };
+    this.state = {
+      isLoggedIn: false,
+      userName: "",
+      userImageSrc: "",
+      setLogin: this.setLogin,
+      setLogout: this.setLogout,
+    };
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
         {/*원래 위에 Router 들어가 있었음*/}
-        <Switch>
-          <Route path="/" exact component={MainPage} />
-          <Route path="/BBS" exact component={bulletinBoard} />
-        </Switch>
+        <LoginContext.Provider value={this.state}>
+          <Switch>
+            <Route path="/" exact component={MainPage} />
+            <Route path="/BBS" exact component={bulletinBoard} />
+          </Switch>
+        </LoginContext.Provider>
       </div>
     );
   }

@@ -12,6 +12,8 @@ import logo from "../image/mask.png";
 
 import LoadingScreen from "react-loading-screen";
 
+import { LoginContext } from "../components/LoginContext";
+
 const styles = (theme) => ({
   firstDiv: {
     backgroundImage: "url(" + bg1 + ")",
@@ -75,6 +77,7 @@ class mainPage extends Component {
           text="메인 페이지로 이동 중..."
         >
           <Appbar />
+          {/*
           <div id="section1" className={classes.firstDiv}>
             <Posts />
           </div>
@@ -86,7 +89,7 @@ class mainPage extends Component {
           </div>
           <div id="section4" className={classes.fourthDiv}>
             <Chat />
-          </div>
+          </div> */}
         </LoadingScreen>
       </>
     );
