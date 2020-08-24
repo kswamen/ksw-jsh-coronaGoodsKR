@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Router, Switch, Route } from "react-router-dom";
 import MainPage from "./pages/mainPage";
 import bulletinBoard from "./pages/bulletinBoard";
+import createPostPage from "./pages/createPostPage";
 import history from "./components/History";
 
 import { LoginContext } from "./components/LoginContext";
@@ -18,22 +19,23 @@ class App extends Component {
         isLoggedIn: true,
         userName: res.profileObj.name,
         userImageSrc: res.profileObj.imageUrl,
+        userID: res.googleId,
       });
-      console.log(this.state.isLoggedIn);
-      console.log(this.state.userName);
-      console.log(this.state.userImageSrc);
+      console.log(this.state.userID);
     };
     this.setLogout = (res) => {
       this.setState({
         isLoggedIn: false,
         userName: "",
         userImageSrc: "",
+        userID: "",
       });
     };
     this.state = {
       isLoggedIn: false,
       userName: "",
       userImageSrc: "",
+      userID: "",
       setLogin: this.setLogin,
       setLogout: this.setLogout,
     };
@@ -48,6 +50,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={MainPage} />
             <Route path="/BBS" exact component={bulletinBoard} />
+            <Route path="/createPostPage" exact component={createPostPage} />
           </Switch>
         </LoginContext.Provider>
       </div>
