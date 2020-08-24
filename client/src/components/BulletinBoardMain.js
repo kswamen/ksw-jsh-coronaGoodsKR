@@ -128,7 +128,14 @@ class BulletinBoardMain extends React.Component {
           </Table>
         </TableContainer>
         <LoginContext.Consumer>
-          {({ isLoggedIn, userName, userImageSrc, setLogin, setLogout }) => (
+          {({
+            isLoggedIn,
+            userName,
+            userImageSrc,
+            userID,
+            setLogin,
+            setLogout,
+          }) => (
             <>
               {!isLoggedIn ? (
                 ""

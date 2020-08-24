@@ -29,7 +29,14 @@ export default class Login extends React.Component {
 
     return (
       <LoginContext.Consumer>
-        {({ isLoggedIn, userName, userImageSrc, setLogin, setLogout }) => (
+        {({
+          isLoggedIn,
+          userName,
+          userImageSrc,
+          userID,
+          setLogin,
+          setLogout,
+        }) => (
           <div
             style={{
               display: "flex",

@@ -5,12 +5,13 @@ import "react-quill/dist/quill.snow.css";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { LoginContext } from "./LoginContext";
 
 import "../css/quill.css";
 
 const styles = (theme) => ({
   contentsDiv: {
-    backgroundColor: "rgba(238, 230, 196, 0.8)",
+    backgroundColor: "rgba(238, 230, 196, 0.7)",
     width: "70vw",
     borderRadius: "10px",
     borderColor: "#888888",
@@ -23,9 +24,35 @@ class BBSPostCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      AppbarHeight: 0,
+      title: "",
+      content: "",
+      isLoggedIn: false,
+      userID: "",
+      userName: "",
+      userImageSrc: "",
     };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
+
+  handleFormSubmit = () => {
+    this.setPosts();
+    if (
+      this.state.title == "" ||
+      this.state.content == "<p><br></p>" || //컨텐트의 기본 폼(아무것도 없을 때)
+      this.state.isLoggedIn == false
+    ) {
+      console.log("something wrong!");
+    } else {
+      console.log("everything is fine.");
+    }
+  };
+
+  setPosts = () => {
+    this.state.title = document.getElementById("title").value;
+    this.state.content = document.getElementsByClassName(
+      "ql-editor"
+    )[0].innerHTML;
+  };
 
   render() {
     const { classes } = this.props;
@@ -36,14 +63,14 @@ class BBSPostCreate extends Component {
           alignItems: "center",
           flexDirection: "column",
           position: "relative",
-          top: this.props.AppbarHeight,
+          top: this.props.AppbarHeight + 30,
         }}
       >
         <div className={classes.contentsDiv}>
           <Container style={{ display: "flex", alignItems: "center" }}>
             <TextField
               style={{ width: "100%", padding: "10px" }}
-              id="standard-basic"
+              id="title"
               label="제목을 입력하세요."
             ></TextField>
           </Container>
@@ -57,7 +84,7 @@ class BBSPostCreate extends Component {
               //alignItems: "center",
             }}
           >
-            <ReactQuill></ReactQuill>
+            <ReactQuill id="content"></ReactQuill>
           </Container>
         </div>
         <div className={classes.contentsDiv}>
@@ -70,6 +97,7 @@ class BBSPostCreate extends Component {
             }}
           >
             <Button
+              href="/BBS"
               style={{ height: "70%", marginRight: "15px" }}
               variant="outlined"
               color="secondary"
@@ -80,10 +108,30 @@ class BBSPostCreate extends Component {
               style={{ height: "70%" }}
               variant="outlined"
               color="primary"
+              onClick={this.handleFormSubmit}
             >
               게시글 올리기
             </Button>
           </Container>
+          <LoginContext.Consumer>
+            {({
+              isLoggedIn,
+              userName,
+              userImageSrc,
+              userID,
+              setLogin,
+              setLogout,
+            }) => (
+              <div style={{ display: "none" }}>
+                {
+                  ((this.state.isLoggedIn = isLoggedIn),
+                  (this.state.userName = userName),
+                  (this.state.userID = userID),
+                  (this.state.userImageSrc = userImageSrc))
+                }
+              </div>
+            )}
+          </LoginContext.Consumer>
         </div>
       </div>
     );

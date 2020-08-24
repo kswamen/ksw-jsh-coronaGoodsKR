@@ -39,7 +39,7 @@ class bulletinBoard extends Component {
       <>
         <AppbarBBS />
         <div className={classes.firstDiv} style={{ position: "relative" }}>
-          <BBSPostCreate AppbarHeight={this.state.AppbarHeight + 15} />
+          <BBSPostCreate AppbarHeight={this.state.AppbarHeight} />
         </div>
       </>
     );
