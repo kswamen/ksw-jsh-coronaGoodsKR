@@ -1,12 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import AppbarBBS from "../components/AppbarBBS";
-import TextField from "@material-ui/core/TextField";
-import img1 from "../image/bg3.jpg";
+import BBSPostCreate from "../components/BBSPostCreate";
+import bg1 from "../image/bg1.jpeg";
+import BulletinBoardMain from "../components/BulletinBoardMain";
 
 const styles = (theme) => ({
   firstDiv: {
-    backgroundColor: "#ffffff",
+    backgroundImage: "url(" + bg1 + ")",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
     width: "auto",
     height: "100vh",
   },
@@ -20,11 +26,21 @@ class bulletinBoard extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      AppbarHeight: document.getElementById("Appbar-bbs").clientHeight,
+    });
+    console.log(this.state.AppbarHeight);
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <>
-        <div id="section1" className={classes.firstDiv}></div>
+        <AppbarBBS />
+        <div className={classes.firstDiv} style={{ position: "relative" }}>
+          <BBSPostCreate AppbarHeight={this.state.AppbarHeight + 15} />
+        </div>
       </>
     );
   }

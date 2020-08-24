@@ -72,107 +72,11 @@ class Appbar extends React.Component {
                     src={imgMask}
                   />
                   <Typography variant="h4" color="#ffffff">
-                    Bulletin Board
+                    CoronaGoodsKR
                   </Typography>
                 </IconButton>
               </div>
-              <div
-                style={{
-                  width: "50vw",
-                  display: "flex",
-                  position: "relative",
-                  justifyContent: "flex-end",
-                  flexDirection: "row",
-                  marginLeft: "auto",
-                }}
-              >
-                <Button color="default">
-                  <ScrollLink
-                    activeClass="active"
-                    to="section1"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <Typography
-                      style={{ color: "#ffffff", padding: "15px" }}
-                      variant="h5"
-                    >
-                      Total Patients
-                    </Typography>
-                  </ScrollLink>
-                </Button>
-                <Button color="default">
-                  <ScrollLink
-                    activeClass="active"
-                    to="section2"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <Typography
-                      style={{ color: "#ffffff", padding: "15px" }}
-                      variant="h5"
-                    >
-                      Products
-                    </Typography>
-                  </ScrollLink>
-                </Button>
-                <Button color="default">
-                  <ScrollLink
-                    activeClass="active"
-                    to="section3"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <Typography
-                      style={{
-                        color: "#ffffff",
-                        padding: "15px",
-                      }}
-                      variant="h5"
-                    >
-                      News
-                    </Typography>
-                  </ScrollLink>
-                </Button>
-                <Button color="default">
-                  <ScrollLink
-                    activeClass="active"
-                    to="section4"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                  >
-                    <Typography
-                      style={{
-                        color: "#ffffff",
-                        padding: "15px",
-                      }}
-                      variant="h5"
-                    >
-                      Chat
-                    </Typography>
-                  </ScrollLink>
-                </Button>
-                {!this.state.isLoggedIn ? (
-                  ""
-                ) : (
-                  <Button href="/BBS" color="default">
-                    <Typography
-                      style={{
-                        color: "#50bcdf",
-                        padding: "15px",
-                        marginRight: "15px",
-                      }}
-                      variant="h5"
-                    >
-                      Bulletin Board
-                    </Typography>
-                  </Button>
-                )}
-              </div>
+
               <Login />
             </div>
           </Toolbar>

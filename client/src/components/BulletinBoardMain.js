@@ -10,6 +10,8 @@ import Paper from "@material-ui/core/Paper";
 import Moment from "react-moment";
 import Button from "@material-ui/core/Button";
 
+import { LoginContext } from "./LoginContext";
+
 import mask from "../image/mask.png";
 
 const styles = (theme) => ({
@@ -125,18 +127,29 @@ class BulletinBoardMain extends React.Component {
             </TableBody>
           </Table>
         </TableContainer>
-        <Button
-          style={{
-            backgroundColor: "#ffffff",
-            position: "fixed",
-            bottom: "0.7vw",
-            left: "45vw",
-            width: "10vw",
-            height: "2.5vw",
-          }}
-        >
-          <h3>신규 게시글 작성</h3>
-        </Button>
+        <LoginContext.Consumer>
+          {({ isLoggedIn, userName, userImageSrc, setLogin, setLogout }) => (
+            <>
+              {!isLoggedIn ? (
+                ""
+              ) : (
+                <Button
+                  href="/createPostPage"
+                  style={{
+                    backgroundColor: "#888888",
+                    position: "fixed",
+                    bottom: "0.7vw",
+                    left: "45vw",
+                    width: "10vw",
+                    height: "2.5vw",
+                  }}
+                >
+                  <h3>신규 게시글 작성</h3>
+                </Button>
+              )}
+            </>
+          )}
+        </LoginContext.Consumer>
       </>
     );
   }
