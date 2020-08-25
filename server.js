@@ -1,11 +1,5 @@
 const express = require("express");
-
-const { getNews, getDay, getDay2, getDay3, getDay4 } = require("./crawl.js");
-
-const { getNewestNews } = require("./crawlNewestNews.js");
-const { getProduct1 } = require("./crawlProduct.js");
 const fs = require("fs");
-
 const data = fs.readFileSync("./database.json");
 const conf = JSON.parse(data);
 const mysql = require("mysql");
@@ -14,14 +8,18 @@ const upload = multer({ dest: "./upload" });
 
 const bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 const port = process.env.PORT || 5000;
 const cron = require("node-cron");
 const socket = require("socket.io");
 const newsJSON = fs.readFileSync("./newestNewsData.json");
 const ProudctJSON = fs.readFileSync("./product.json");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const { getNews, getDay, getDay2, getDay3, getDay4 } = require("./crawl.js");
+const { getNewestNews } = require("./crawlNewestNews.js");
+const { getProduct1 } = require("./crawlProduct.js");
 
 const connection = mysql.createConnection({
   host: conf.host,
@@ -41,12 +39,29 @@ app.get("/api/customers", (req, res) => {
   );
 });
 
+app.use("/image", express.static("./upload"));
+
+app.post("/api/posts", upload.single("image"), (req, res) => {
+  let sql =
+    "insert into posts(image, title, contents, writer, ID) values (?, ?, ?, ?, ?)";
+  let image = req.body.image;
+  let title = req.body.title;
+  let contents = req.body.contents;
+  let writer = req.body.writer;
+  let ID = req.body.ID;
+  let params = [image, title, contents, writer, ID];
+  console.log(image);
+
+  connection.query(sql, params, (err, rows, fields) => {
+    res.send(rows);
+  });
+});
+
 async function getNewsAsync() {
   const data = await getNewestNews();
 }
 async function getProductAsync() {
   const Product_data = await getProduct1();
-  // const Product_data2 = await getProduct2();
 }
 
 cron.schedule("*/10 * * * *", async () => {
@@ -54,14 +69,6 @@ cron.schedule("*/10 * * * *", async () => {
   await getProductAsync();
   await getNewsAsync();
 });
-
-// app.use('/api/crawl',async(req,res) => {
-//   const text = await handleAsync();
-//   console.log(text);
-//   res.json([{text: text},
-//             {id : 1}]
-//     );
-// })
 
 app.get("/api/product", async (req, res) => {
   res.send(ProudctJSON);
@@ -167,8 +174,6 @@ app.get("/api/crawl", async (req, res) => {
     },
   ]);
 });
-
-//server.listen(port, () => console.log(`Listening on port ${port}`));
 
 server = app.listen(5000, function () {
   console.log("server is running on port 5000");

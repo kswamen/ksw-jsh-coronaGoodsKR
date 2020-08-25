@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Appbar from "./components/Appbar";
 import { withStyles } from "@material-ui/core/styles";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, withRouter } from "react-router-dom";
 import MainPage from "./pages/mainPage";
 import bulletinBoard from "./pages/bulletinBoard";
 import createPostPage from "./pages/createPostPage";
@@ -57,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App); //withStyles 덕분에 firstDiv가 구별된다.
+export default withStyles(styles)(withRouter(App)); //withStyles 덕분에 firstDiv가 구별된다.

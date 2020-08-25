@@ -30,7 +30,6 @@ class bulletinBoard extends Component {
     this.setState({
       AppbarHeight: document.getElementById("Appbar-bbs").clientHeight,
     });
-    console.log(this.state.AppbarHeight);
   }
 
   render() {
@@ -39,7 +38,10 @@ class bulletinBoard extends Component {
       <>
         <AppbarBBS />
         <div className={classes.firstDiv} style={{ position: "relative" }}>
-          <BBSPostCreate AppbarHeight={this.state.AppbarHeight} />
+          <BBSPostCreate
+            AppbarHeight={this.state.AppbarHeight}
+            history={this.props.history}
+          />
         </div>
       </>
     );

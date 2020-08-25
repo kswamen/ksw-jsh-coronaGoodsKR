@@ -1,13 +1,13 @@
 import React, { Component, useState } from "react";
+import { post } from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import ReactQuill, { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { LoginContext } from "./LoginContext";
 import ImageUploader from "quill-image-uploader";
-
+import "react-quill/dist/quill.snow.css";
 import "../css/quill.css";
 
 Quill.register("modules/imageUploader", ImageUploader);
@@ -36,6 +36,8 @@ class BBSPostCreate extends Component {
       userImageSrc: "",
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.addPosts = this.addPosts.bind(this);
+    this.setPosts = this.setPosts.bind(this);
   }
 
   modules = {
@@ -71,9 +73,10 @@ class BBSPostCreate extends Component {
 
   handleFormSubmit = () => {
     this.setPosts();
-    if (this.state.title == "" || this.state.isLoggedIn == false) {
+    if (this.state.title != "" && this.state.isLoggedIn != false) {
+      this.addPosts();
+    } else {
     }
-    console.log(this.state.content);
   };
 
   setPosts = () => {
@@ -81,6 +84,39 @@ class BBSPostCreate extends Component {
     this.state.content = document.getElementsByClassName(
       "ql-editor"
     )[0].innerHTML;
+    if (
+      document
+        .getElementsByClassName("ql-editor")[0]
+        .getElementsByTagName("img")[0] != null
+    ) {
+      this.state.thumbnail = document
+        .getElementsByClassName("ql-editor")[0]
+        .getElementsByTagName("img")[0].src;
+    } else {
+      this.state.thumbnail = "";
+    }
+  };
+
+  addPosts = () => {
+    const url = "/api/posts";
+    const formData = new FormData();
+    if (this.state.thumbnail == "") {
+      this.state.thumbnail =
+        "https://2.bp.blogspot.com/-muVbmju-gkA/Vir94NirTeI/AAAAAAAAT9c/VoHzHZzQmR4/s1600/placeholder-image.jpg";
+    }
+    formData.append("image", this.state.thumbnail);
+    formData.append("title", this.state.title);
+    formData.append("contents", this.state.content);
+    formData.append("writer", this.state.userName);
+    formData.append("ID", this.state.userID);
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    return post(url, formData, config);
   };
 
   render() {
@@ -138,6 +174,7 @@ class BBSPostCreate extends Component {
               variant="outlined"
               color="primary"
               onClick={this.handleFormSubmit}
+              href="/BBS"
             >
               게시글 올리기
             </Button>

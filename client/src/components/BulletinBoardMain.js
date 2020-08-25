@@ -53,7 +53,11 @@ class BulletinBoardMain extends React.Component {
 
   componentDidMount() {
     this.callApi()
-      .then((res) => this.setState({ posts: res }))
+      .then((res) => {
+        this.setState({
+          posts: res,
+        });
+      })
       .catch((err) => console.log(err));
   }
 
