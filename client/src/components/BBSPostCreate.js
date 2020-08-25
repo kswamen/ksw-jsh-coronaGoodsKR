@@ -34,6 +34,7 @@ class BBSPostCreate extends Component {
       userID: "",
       userName: "",
       userImageSrc: "",
+      goodPost: false,
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.addPosts = this.addPosts.bind(this);
@@ -74,6 +75,7 @@ class BBSPostCreate extends Component {
   handleFormSubmit = () => {
     this.setPosts();
     if (this.state.title != "" && this.state.isLoggedIn != false) {
+      this.state.goodPost = true;
       this.addPosts();
     } else {
     }
@@ -137,6 +139,19 @@ class BBSPostCreate extends Component {
               style={{ width: "100%", padding: "10px" }}
               id="title"
               label="제목을 입력하세요."
+              onChange={() => {
+                if (document.getElementById("title").value != "") {
+                  this.setState({
+                    goodPost: true,
+                  });
+                  console.log(this.state.goodPost);
+                } else {
+                  this.setState({
+                    goodPost: false,
+                  });
+                  console.log(this.state.goodPost);
+                }
+              }}
             ></TextField>
           </Container>
         </div>
@@ -174,7 +189,7 @@ class BBSPostCreate extends Component {
               variant="outlined"
               color="primary"
               onClick={this.handleFormSubmit}
-              href="/BBS"
+              href={this.state.goodPost ? "/BBS" : ""}
             >
               게시글 올리기
             </Button>
