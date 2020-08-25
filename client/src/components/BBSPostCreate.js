@@ -1,13 +1,16 @@
 import React, { Component, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { LoginContext } from "./LoginContext";
+import ImageUploader from "quill-image-uploader";
 
 import "../css/quill.css";
+
+Quill.register("modules/imageUploader", ImageUploader);
 
 const styles = (theme) => ({
   contentsDiv: {
@@ -26,6 +29,7 @@ class BBSPostCreate extends Component {
     this.state = {
       title: "",
       content: "",
+      thumbnail: "",
       isLoggedIn: false,
       userID: "",
       userName: "",
@@ -34,17 +38,42 @@ class BBSPostCreate extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  modules = {
+    // #3 Add "image" to the toolbar
+    toolbar: [["bold", "italic", "image"]],
+    // # 4 Add module and upload function
+    imageUploader: {
+      upload: (file) => {
+        return new Promise((resolve, reject) => {
+          const formData = new FormData();
+          formData.append("image", file);
+
+          fetch(
+            "https://api.imgbb.com/1/upload?key=d36eb6591370ae7f9089d85875e56b22",
+            {
+              method: "POST",
+              body: formData,
+            }
+          )
+            .then((response) => response.json())
+            .then((result) => {
+              console.log(result);
+              resolve(result.data.url);
+            })
+            .catch((error) => {
+              reject("Upload failed");
+              console.error("Error:", error);
+            });
+        });
+      },
+    },
+  };
+
   handleFormSubmit = () => {
     this.setPosts();
-    if (
-      this.state.title == "" ||
-      this.state.content == "<p><br></p>" || //컨텐트의 기본 폼(아무것도 없을 때)
-      this.state.isLoggedIn == false
-    ) {
-      console.log("something wrong!");
-    } else {
-      console.log("everything is fine.");
+    if (this.state.title == "" || this.state.isLoggedIn == false) {
     }
+    console.log(this.state.content);
   };
 
   setPosts = () => {
@@ -84,7 +113,7 @@ class BBSPostCreate extends Component {
               //alignItems: "center",
             }}
           >
-            <ReactQuill id="content"></ReactQuill>
+            <ReactQuill id="content" modules={this.modules}></ReactQuill>
           </Container>
         </div>
         <div className={classes.contentsDiv}>
@@ -114,14 +143,7 @@ class BBSPostCreate extends Component {
             </Button>
           </Container>
           <LoginContext.Consumer>
-            {({
-              isLoggedIn,
-              userName,
-              userImageSrc,
-              userID,
-              setLogin,
-              setLogout,
-            }) => (
+            {({ isLoggedIn, userName, userImageSrc, userID }) => (
               <div style={{ display: "none" }}>
                 {
                   ((this.state.isLoggedIn = isLoggedIn),
