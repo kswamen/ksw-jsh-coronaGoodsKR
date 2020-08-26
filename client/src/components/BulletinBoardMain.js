@@ -1,5 +1,6 @@
 import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,10 +10,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Moment from "react-moment";
 import Button from "@material-ui/core/Button";
-
 import { LoginContext } from "./LoginContext";
 
-import mask from "../image/mask.png";
+import "../css/postTablePage.css";
 
 const styles = (theme) => ({
   table: {
@@ -28,7 +28,7 @@ const StyledTableCell = withStyles((theme) => ({
     position: "sticky",
   },
   body: {
-    fontSize: 20,
+    fontSize: 25,
   },
 }))(TableCell);
 
@@ -39,6 +39,9 @@ const StyledTableRow = withStyles((theme) => ({
     },
     "&:nth-of-type(even)": {
       backgroundColor: "rgba(152, 152, 152, 0.6)",
+    },
+    "&:hover": {
+      backgroundColor: "rgba(100, 0, 0, 0.3) !important",
     },
   },
 }))(TableRow);
@@ -102,13 +105,22 @@ class BulletinBoardMain extends React.Component {
             </TableHead>
             <TableBody>
               {this.state.posts.map((row) => (
-                <StyledTableRow key={row.num}>
+                <StyledTableRow
+                  key={row.num}
+                  hover
+                  component={Link}
+                  to={"/postPage/" + row.num}
+                >
                   <StyledTableCell align="center" component="th" scope="row">
                     {row.num}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <img
-                      style={{ width: "100px", height: "100px" }}
+                      style={{
+                        maxWidth: "200px",
+                        height: "auto",
+                        maxHeight: "500px",
+                      }}
                       src={row.image}
                     />
                   </StyledTableCell>

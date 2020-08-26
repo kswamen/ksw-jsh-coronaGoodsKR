@@ -5,6 +5,7 @@ import { Router, Switch, Route, withRouter } from "react-router-dom";
 import MainPage from "./pages/mainPage";
 import bulletinBoard from "./pages/bulletinBoard";
 import createPostPage from "./pages/createPostPage";
+import postPage from "./pages/postPage";
 import history from "./components/History";
 
 import { LoginContext } from "./components/LoginContext";
@@ -50,6 +51,7 @@ class App extends Component {
             <Route path="/" exact component={MainPage} />
             <Route path="/BBS" exact component={bulletinBoard} />
             <Route path="/createPostPage" exact component={createPostPage} />
+            <Route path="/postPage/:postNum" exact component={postPage} />
           </Switch>
         </LoginContext.Provider>
       </div>

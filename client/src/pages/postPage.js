@@ -6,6 +6,7 @@ import AppbarBBS from "../components/AppbarBBS";
 import BBSPostCreate from "../components/BBSPostCreate";
 import bg1 from "../image/bg1.jpeg";
 import BulletinBoardMain from "../components/BulletinBoardMain";
+import Button from "@material-ui/core/Button";
 
 const styles = (theme) => ({
   firstDiv: {
@@ -19,7 +20,7 @@ const styles = (theme) => ({
   },
 });
 
-class createPostPage extends Component {
+class postPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,18 +36,20 @@ class createPostPage extends Component {
 
   render() {
     const { classes } = this.props;
+    const { params } = this.props.match;
     return (
       <>
         <AppbarBBS />
         <div className={classes.firstDiv}>
-          <BBSPostCreate
-            AppbarHeight={this.state.AppbarHeight}
-            history={this.props.history}
-          />
+          <Button
+            style={{ top: this.state.AppbarHeight, backgroundColor: "#ffffff" }}
+          >
+            {params.postNum}
+          </Button>
         </div>
       </>
     );
   }
 }
 
-export default withStyles(styles)(createPostPage); //withStyles 덕분에 firstDiv가 구별된다.
+export default withStyles(styles)(postPage); //withStyles 덕분에 firstDiv가 구별된다.
