@@ -39,6 +39,15 @@ app.get("/api/customers", (req, res) => {
   );
 });
 
+app.get("/api/getPost/:postNum", (req, res) => {
+  let sql = "Select * from posts where num = ?";
+  let params = [req.params.postNum];
+
+  connection.query(sql, params, (err, rows, fields) => {
+    res.send(rows);
+  });
+});
+
 app.use("/image", express.static("./upload"));
 
 app.post("/api/posts", upload.single("image"), (req, res) => {
