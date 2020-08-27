@@ -180,7 +180,11 @@ class BulletinBoardMain extends React.Component {
             </LoginContext.Consumer>
             <TablePagination
               component="div"
-              style={{ backgroundColor: "#ffffff" }}
+              labelRowsPerPage="페이지 당 게시물 수"
+              style={{
+                backgroundColor: "rgba(255, 215, 0, 0.6)",
+                borderRadius: "7px",
+              }}
             />
           </div>
         </Paper>
