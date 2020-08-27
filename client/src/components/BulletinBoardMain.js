@@ -1,17 +1,22 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import { withStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Moment from "react-moment";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import LastPageIcon from "@material-ui/icons/LastPage";
 import { LoginContext } from "./LoginContext";
 
 import "../css/postTablePage.css";
@@ -48,11 +53,70 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+function TablePaginationActions(props) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onChangePage } = props;
+
+  const handleFirstPageButtonClick = (event) => {
+    onChangePage(event, 0);
+  };
+
+  const handleBackButtonClick = (event) => {
+    onChangePage(event, page - 1);
+  };
+
+  const handleNextButtonClick = (event) => {
+    onChangePage(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event) => {
+    onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  return (
+    <div style={{ display: "flex" }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        <FirstPageIcon />
+      </IconButton>
+      <IconButton onClick={handleBackButtonClick} disabled={page === 0}>
+        <KeyboardArrowLeft />
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        <KeyboardArrowRight />
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        <LastPageIcon />
+      </IconButton>
+    </div>
+  );
+}
+
+TablePaginationActions.propTypes = {
+  count: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+};
+
 class BulletinBoardMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
+      page: 0,
+      rowsPerPage: 5,
     };
   }
 
@@ -73,6 +137,26 @@ class BulletinBoardMain extends React.Component {
   };
 
   render() {
+    const emptyRows =
+      this.state.rowsPerPage -
+      Math.min(
+        this.state.rowsPerPage,
+        this.state.posts.length - this.state.page * this.state.rowsPerPage
+      );
+
+    const handleChangePage = (event, newPage) => {
+      this.setState({
+        page: newPage,
+      });
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+      this.setState({
+        rowsPerPage: parseInt(event.target.value, 10),
+        page: 0,
+      });
+    };
+
     const { classes } = this.props;
     return (
       <>
@@ -113,7 +197,14 @@ class BulletinBoardMain extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.state.posts.map((row) => (
+                {(this.state.rowsPerPage > 0
+                  ? this.state.posts.slice(
+                      this.state.page * this.state.rowsPerPage,
+                      this.state.page * this.state.rowsPerPage +
+                        this.state.rowsPerPage
+                    )
+                  : this.state.posts
+                ).map((row) => (
                   <StyledTableRow
                     key={row.num}
                     hover
@@ -179,12 +270,20 @@ class BulletinBoardMain extends React.Component {
               )}
             </LoginContext.Consumer>
             <TablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              colSpan={3}
+              count={this.state.posts.length}
+              rowsPerPage={this.state.rowsPerPage}
+              page={this.state.page}
               component="div"
               labelRowsPerPage="페이지 당 게시물 수"
               style={{
                 backgroundColor: "rgba(255, 215, 0, 0.6)",
                 borderRadius: "7px",
               }}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
             />
           </div>
         </Paper>
