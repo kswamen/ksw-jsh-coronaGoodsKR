@@ -5,3 +5,7 @@ p {
 img {
   max-width: 100%;
 }
+
+body {
+  background: url("../image/bg1.jpeg") no-repeat fixed 100%;
+}

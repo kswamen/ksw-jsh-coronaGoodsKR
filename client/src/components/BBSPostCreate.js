@@ -111,6 +111,7 @@ class BBSPostCreate extends Component {
     formData.append("contents", this.state.content);
     formData.append("writer", this.state.userName);
     formData.append("ID", this.state.userID);
+    formData.append("userImage", this.state.userImageSrc);
 
     const config = {
       headers: {

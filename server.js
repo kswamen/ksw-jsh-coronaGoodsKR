@@ -48,18 +48,26 @@ app.get("/api/getPost/:postNum", (req, res) => {
   });
 });
 
+app.delete("/api/deletePost/:postNum", (req, res) => {
+  let sql = "update posts set isDeleted = 1 where num = ?";
+  let params = [req.params.postNum];
+  connection.query(sql, params, (err, rows, fields) => {
+    res.send(rows);
+  });
+});
+
 app.use("/image", express.static("./upload"));
 
 app.post("/api/posts", upload.single("image"), (req, res) => {
   let sql =
-    "insert into posts(image, title, contents, writer, ID) values (?, ?, ?, ?, ?)";
+    "insert into posts(image, title, contents, writer, ID, userImage) values (?, ?, ?, ?, ?, ?)";
   let image = req.body.image;
   let title = req.body.title;
   let contents = req.body.contents;
   let writer = req.body.writer;
   let ID = req.body.ID;
-  let params = [image, title, contents, writer, ID];
-  console.log(image);
+  let userImage = req.body.userImage;
+  let params = [image, title, contents, writer, ID, userImage];
 
   connection.query(sql, params, (err, rows, fields) => {
     res.send(rows);

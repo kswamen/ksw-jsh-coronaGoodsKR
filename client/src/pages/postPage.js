@@ -10,20 +10,9 @@ import Typography from "@material-ui/core/Typography";
 import bg1 from "../image/bg1.jpeg";
 import Button from "@material-ui/core/Button";
 
-const styles = (theme) => ({
-  firstDiv: {
-    /*
-    backgroundImage: "url(" + bg1 + ")",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    */
+import "../css/BBSPost.css";
 
-    width: "auto",
-    //height: "100vh",
-    position: "relative",
-  },
-});
+const styles = (theme) => ({});
 
 class postPage extends Component {
   constructor(props) {
@@ -45,9 +34,7 @@ class postPage extends Component {
     return (
       <>
         <AppbarBBS />
-        <div className={classes.firstDiv}>
-          <BBSPost postNum={params.postNum} />
-        </div>
+        <BBSPost postNum={params.postNum} />
       </>
     );
   }
