@@ -76,7 +76,7 @@ class BulletinBoardMain extends React.Component {
     const { classes } = this.props;
     return (
       <>
-        <TableContainer
+        <Paper
           style={{
             top: this.props.AppbarHeight + 15,
             height: "auto",
@@ -89,62 +89,75 @@ class BulletinBoardMain extends React.Component {
             backgroundColor: "rgba(255, 255, 255, 0.6)",
             maxHeight: "80vh",
           }}
-          component={Paper}
         >
-          <Table
-            stickyHeader
-            className={classes.table}
-            aria-label="customized table"
+          <TableContainer
+            style={{
+              maxHeight: "80vh",
+            }}
           >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">No.</StyledTableCell>
-                <StyledTableCell align="center">Image</StyledTableCell>
-                <StyledTableCell align="center">Title</StyledTableCell>
-                <StyledTableCell align="right">Writer</StyledTableCell>
-                <StyledTableCell align="right">Date</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.state.posts.map((row) => (
-                <StyledTableRow
-                  key={row.num}
-                  hover
-                  component={Link}
-                  to={"/postPage/" + row.num}
-                >
-                  <StyledTableCell align="center" component="th" scope="row">
-                    {row.num}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <img
-                      style={{
-                        maxWidth: "200px",
-                        height: "auto",
-                        maxHeight: "500px",
-                      }}
-                      src={row.image}
-                    />
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.title}</StyledTableCell>
-                  <StyledTableCell align="right">{row.writer}</StyledTableCell>
-                  <StyledTableCell
-                    style={{ width: "15%", fontSize: 15 }}
-                    align="right"
+            <Table
+              stickyHeader
+              className={classes.table}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">No.</StyledTableCell>
+                  <StyledTableCell align="center">Image</StyledTableCell>
+                  <StyledTableCell align="center">Title</StyledTableCell>
+                  <StyledTableCell align="right">Writer</StyledTableCell>
+                  <StyledTableCell align="right">Date</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.state.posts.map((row) => (
+                  <StyledTableRow
+                    key={row.num}
+                    hover
+                    component={Link}
+                    to={"/postPage/" + row.num}
                   >
-                    <Moment
-                      style={{ whiteSpace: "pre" }}
-                      format="YYYY-MMM-D HH:MM"
-                      withTitle
+                    <StyledTableCell align="center" component="th" scope="row">
+                      {row.num}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <img
+                        style={{
+                          maxWidth: "200px",
+                          height: "auto",
+                          maxHeight: "500px",
+                        }}
+                        src={row.image}
+                      />
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.title}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {row.writer}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      style={{ width: "15%", fontSize: 15 }}
+                      align="right"
                     >
-                      {row.date}
-                    </Moment>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                      <Moment
+                        style={{ whiteSpace: "pre" }}
+                        format="YYYY-MMM-D HH:MM"
+                        withTitle
+                      >
+                        {row.date}
+                      </Moment>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            component="div"
+            style={{ backgroundColor: "#ffffff", float: "right" }}
+          />
+        </Paper>
         <LoginContext.Consumer>
           {({ isLoggedIn }) => (
             <>
