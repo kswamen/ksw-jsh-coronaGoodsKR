@@ -60,7 +60,6 @@ class BBSPostCreate extends Component {
           )
             .then((response) => response.json())
             .then((result) => {
-              console.log(result);
               resolve(result.data.url);
             })
             .catch((error) => {
@@ -145,12 +144,10 @@ class BBSPostCreate extends Component {
                   this.setState({
                     goodPost: true,
                   });
-                  console.log(this.state.goodPost);
                 } else {
                   this.setState({
                     goodPost: false,
                   });
-                  console.log(this.state.goodPost);
                 }
               }}
             ></TextField>

@@ -151,39 +151,4 @@ async function getProduct1() {
   fs.writeFileSync(dataPath, JSON.stringify(dataArr));
 }
 
-// async function getProduct1() {
-//   if (!html) {
-//     html = await getHtml1();
-//   }
-
-//   const dataArr = [];
-//   const dataPath = "./product.json";
-//   const $ = cheerio.load(html.data);
-
-//   $("#fullContent #content .productList ul li")
-//   .each(async function (index, item) {
-//     var src = 'https://www.esthermall.co.kr'+ $(item).find(".imgArea").find("img").attr("src");
-//     var title = $(item).find(".tit").text();
-//     var price = $(item).find(".price").text().substring(0,7);
-
-//     var a = 'https://www.esthermall.co.kr'+$(item).find(".hideBox").find("a").eq(1).attr("href");
-//     var data = {
-//         src: src,
-//         brand:'https://www.esthermall.co.kr/skin/default/images/img/img_h1_logo_renew.gif',
-//         title: title,
-//         price: price.replace('원',""),
-//         a:a
-//       };
-
-//       if (index >= 0) {
-//         dataArr.push(data);
-//         fs.writeFileSync(dataPath, JSON.stringify(dataArr));
-//         console.log("Product2222");
-//       //  sortJSON(dataArr,"price","asc");
-
-//       }
-//     }
-//   );
-// }
-
 module.exports = { getProduct1 };

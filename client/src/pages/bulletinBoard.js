@@ -29,7 +29,6 @@ class bulletinBoard extends Component {
     this.setState({
       AppbarHeight: document.getElementById("Appbar-bbs").clientHeight,
     });
-    console.log(this.state.AppbarHeight);
   }
 
   render() {

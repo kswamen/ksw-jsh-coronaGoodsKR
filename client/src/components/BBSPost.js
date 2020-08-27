@@ -137,7 +137,7 @@ class postPage extends Component {
             <div
               style={{
                 display: "flex",
-                width: "50%",
+                flex: 1,
                 height: "100%",
                 alignItems: "center",
               }}
@@ -158,7 +158,7 @@ class postPage extends Component {
             <div
               style={{
                 display: "flex",
-                width: "50%",
+                flex: 1,
                 height: "100%",
                 alignItems: "center",
                 justifyContent: "flex-end",
