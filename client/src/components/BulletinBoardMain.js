@@ -78,6 +78,9 @@ class BulletinBoardMain extends React.Component {
       <>
         <Paper
           style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
             top: this.props.AppbarHeight + 15,
             height: "auto",
             position: "relative",
@@ -87,7 +90,7 @@ class BulletinBoardMain extends React.Component {
             border: 30,
             borderColor: "#ffffff",
             backgroundColor: "rgba(255, 255, 255, 0.6)",
-            maxHeight: "80vh",
+            maxHeight: "85vh",
           }}
         >
           <TableContainer
@@ -153,34 +156,34 @@ class BulletinBoardMain extends React.Component {
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
-            component="div"
-            style={{ backgroundColor: "#ffffff", float: "right" }}
-          />
-        </Paper>
-        <LoginContext.Consumer>
-          {({ isLoggedIn }) => (
-            <>
-              {!isLoggedIn ? (
-                ""
-              ) : (
-                <Button
-                  href="/createPostPage"
-                  style={{
-                    backgroundColor: "#888888",
-                    position: "fixed",
-                    bottom: "0.7vw",
-                    left: "45vw",
-                    width: "10vw",
-                    height: "2.5vw",
-                  }}
-                >
-                  <h3>신규 게시글 작성</h3>
-                </Button>
+          <div style={{ display: "flex" }}>
+            <LoginContext.Consumer>
+              {({ isLoggedIn }) => (
+                <>
+                  {!isLoggedIn ? (
+                    ""
+                  ) : (
+                    <Button
+                      href="/createPostPage"
+                      style={{
+                        backgroundColor: "rgba(100,0,100,0.6)",
+                        position: "relative",
+                        width: "10vw",
+                        marginRight: "20px",
+                      }}
+                    >
+                      <h3 style={{ margin: "5px" }}>신규 게시글 작성</h3>
+                    </Button>
+                  )}
+                </>
               )}
-            </>
-          )}
-        </LoginContext.Consumer>
+            </LoginContext.Consumer>
+            <TablePagination
+              component="div"
+              style={{ backgroundColor: "#ffffff" }}
+            />
+          </div>
+        </Paper>
       </>
     );
   }
