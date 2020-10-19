@@ -34,6 +34,7 @@ app.get("/api/customers", (req, res) => {
   connection.query(
     "Select * From posts where isDeleted = 0 order by date desc",
     (err, rows, fields) => {
+      console.log(rows);
       res.send(rows);
     }
   );
